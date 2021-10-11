@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "520569438457",
+    "project_id": "forest-skater",
+    "storage_bucket": "forest-skater.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:520569438457:android:0f58b5ab6f48dc1121a228",
+        "android_client_info": {
+          "package_name": "au.com.ForestSkater"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "520569438457-pui7e83nmpe4mpjuor34rpsioqqqsv6v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBc9Zv3YSUoHJdd5zlHZXSG_RZV8oSzC0c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "520569438457-pui7e83nmpe4mpjuor34rpsioqqqsv6v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
