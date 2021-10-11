@@ -1,14 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import ChangeSkin from './components/ChangeSkin';
+import { NativeRouter, Switch, Route } from 'react-router-native'
+import Mainmenu from './components/Mainmenu'
 
 export default function App() {
   
   return (
     <View style={styles.container}>
-      <ChangeSkin/>
-      <StatusBar style="auto" />
+      <StatusBar style="auto" hidden={true}/>
+      <NativeRouter>
+        <Switch>
+          <Route exact path="/" component={Mainmenu}/>
+        </Switch>
+      </NativeRouter>
     </View>
   );
 }
