@@ -3,7 +3,7 @@
     "name": "Forest-Skater",
     "slug": "Forest-Skater",
     "version": "1.0.0",
-    "orientation": "portrait",
+    "orientation": "landscape",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
@@ -23,7 +23,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "au.com.ForestSkater"
     },
     "web": {
       "favicon": "./assets/favicon.png"
