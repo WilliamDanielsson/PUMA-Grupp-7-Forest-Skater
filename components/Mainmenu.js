@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Image, StyleSheet } from 'react-native'
+import { View, Image, StyleSheet, TouchableNativeFeedback } from 'react-native'
 import Background from './children/Background'
 
 const Mainmenu = ({ history }) => {
@@ -8,12 +8,24 @@ const Mainmenu = ({ history }) => {
         <>
             <Background/>
             <View style={styles.container}>
-                <Image source={require('../assets/play.png')}/>
+                
+                <TouchableNativeFeedback onPress={() => {history.push("/game")}} background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
+                    <Image source={require('../assets/play.png')}/>
+                </TouchableNativeFeedback> 
+                
                 <View style={styles.innerContainer}>
-                    <Image source={require('../assets/customize.png')} style={styles.image}/>
+                    <TouchableNativeFeedback onPress={() => {history.push("/customize")}} background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
+                        <Image source={require('../assets/customize.png')} style={styles.image}/>
+                    </TouchableNativeFeedback>
+
+                    <TouchableNativeFeedback onPress={() => {history.push("/leaderboard")}} background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
                     <Image source={require('../assets/leaderboard.png')} style={styles.image}/>
-                    <Image source={require('../assets/cog.png')} style={styles.image}/>
-                </View>
+                    </TouchableNativeFeedback> 
+
+                    <TouchableNativeFeedback onPress={() => {history.push("/options")}} background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
+                        <Image source={require('../assets/cog.png')} style={styles.image}/>
+                    </TouchableNativeFeedback> 
+                    </View>
             </View>
         </>
     )
