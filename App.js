@@ -7,6 +7,8 @@ import Leaderboard from './components/Leaderboard'
 import Options from './components/Options'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import HomeScreen from './components/HomeScreen';
+import LoginScreen from './components/LoginScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,6 +23,8 @@ export default function App() {
         <Stack.Screen options = {{headerShown: false}} name="customize" component ={Customize} />
         <Stack.Screen options = {{headerShown: false}} name="leaderboard" component ={Leaderboard} />
         <Stack.Screen options = {{headerShown: false}} name="options" component ={Options} />
+        <Stack.Screen options = {{headerShown: false}} name="main" component ={HomeScreen} />
+        <Stack.Screen options = {{headerShown: false}} name="login" component ={LoginScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   )

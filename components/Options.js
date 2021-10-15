@@ -1,16 +1,12 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Image, Text, TouchableNativeFeedback } from 'react-native'
 
-const Options = () => {
+const Options = ({navigation}) => {
     return (
         <View>
-            
-            {/* 
-                Denna komponent är själva options sidan 
-                där alla option-child components ska in 
-            */}
-
-            <Text>Options</Text>
+                <TouchableNativeFeedback onPress={() => {navigation.navigate("login")}} background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
+                    <Image source={require('../assets/play.png')}/>
+                </TouchableNativeFeedback> 
         </View>
     )
 }

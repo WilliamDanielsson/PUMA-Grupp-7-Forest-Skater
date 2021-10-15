@@ -13,15 +13,15 @@ const Mainmenu = ({ navigation }) => {
                     <Image source={require('../assets/play.png')}/>
                 </TouchableNativeFeedback> 
             
-                <TouchableNativeFeedback onPress={() => {history.push("customize")}} background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
+                <TouchableNativeFeedback onPress={() => {navigation.navigate("customize")}} background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
                     <Image source={require('../assets/customize.png')} style={styles.image}/>
                 </TouchableNativeFeedback>
 
-                <TouchableNativeFeedback onPress={() => {history.push("leaderboard")}} background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
+                <TouchableNativeFeedback onPress={() => {navigation.navigate("leaderboard")}} background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
                 <Image source={require('../assets/leaderboard.png')} style={styles.image}/>
                 </TouchableNativeFeedback> 
 
-                <TouchableNativeFeedback onPress={() => {history.push("options")}} background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
+                <TouchableNativeFeedback onPress={() => {navigation.navigate("options")}} background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
                     <Image source={require('../assets/cog.png')} style={styles.image}/>
                 </TouchableNativeFeedback> 
 
