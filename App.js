@@ -1,36 +1,27 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import { NativeRouter, Switch, Route } from 'react-router-native'
 import Mainmenu from './components/Mainmenu'
 import Game from './components/Game'
 import Customize from './components/Customize'
 import Leaderboard from './components/Leaderboard'
 import Options from './components/Options'
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   
   return (
-    <View style={styles.container}>
+    <NavigationContainer>
       <StatusBar style="auto" hidden={true}/>
-      <NativeRouter>
-        <Switch>
-          <Route exact path="/" component={Mainmenu}/>
-          <Route exact path="/game" component={Game}/>
-          <Route exact path="/customize" component={Customize}/>
-          <Route exact path="/leaderboard" component={Leaderboard}/>
-          <Route exact path="/options" component={Options}/>
-        </Switch>
-      </NativeRouter>
-    </View>
-  );
+      <Stack.Navigator initialRouteName="home">
+        <Stack.Screen options = {{headerShown: false}} name="home" component ={Mainmenu} />
+        <Stack.Screen options = {{headerShown: false}} name="game" component ={Game} />
+        <Stack.Screen options = {{headerShown: false}} name="customize" component ={Customize} />
+        <Stack.Screen options = {{headerShown: false}} name="leaderboard" component ={Leaderboard} />
+        <Stack.Screen options = {{headerShown: false}} name="options" component ={Options} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
