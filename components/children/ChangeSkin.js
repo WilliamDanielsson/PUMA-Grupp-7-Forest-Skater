@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Image, StyleSheet } from 'react-native'
+import { View, Image, StyleSheet } from 'react-native' 
 
 export default function ChangeSkin({indexHat, indexHead, indexSweater, indexTrouser}) {
     
@@ -24,25 +24,25 @@ export default function ChangeSkin({indexHat, indexHead, indexSweater, indexTrou
         <>
             <View>   
                 <Image 
-                    source={require( '../assets/skins/hats/hat'+index+'.png')} 
+                    source={require( '../../assets/skins/hats/hat'+1+'.png')} 
                     style={styles.hat}
                 ></Image>
             </View>
             <View>   
                 <Image 
-                    source={require( '../assets/skins/heads/head'+index1+'.png')} 
+                    source={require( '../../assets/skins/heads/head'+1+'.png')} 
                     styles={styles.head}
                 ></Image>
             </View>
              <View>   
                 <Image 
-                    source={require( '../assets/skins/sweaters/cloth'+index2+'.png')} 
+                    source={require( '../../assets/skins/sweaters/cloth'+1+'.png')} 
                     styles={styles.sweater}
                 ></Image>
             </View>
             <View>   
                 <Image 
-                    source={require( '../assets/skins/trousers/pants'+index3+'.png')} 
+                    source={require( '../../assets/skins/trousers/pants'+1+'.png')} 
                     styles={styles.trouser}
                 ></Image>
             </View>
