@@ -1,10 +1,10 @@
 import React from 'react'
 import { View, Text } from 'react-native'
+import Background from './children/Background'
 
 const Customize = () => {
     return (
-        <View>
-            
+        <>
             {/* 
                 Denna komponent är själva customize sidan 
                 där alla child customize-components ska in 
@@ -12,7 +12,7 @@ const Customize = () => {
 
             <Text>Customize</Text>
 
-        </View>
+        </>
     )
 }
 

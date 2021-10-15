@@ -2,17 +2,18 @@ import React from 'react'
 import { View, Image, StyleSheet, TouchableNativeFeedback } from 'react-native'
 import Background from './children/Background'
 
-const Mainmenu = ({ history }) => {
+const Mainmenu = ({ navigation }) => {
 
     return (
         <>
             <Background/>
             <View style={styles.container}>
                 
-                <TouchableNativeFeedback onPress={() => {history.push("/game")}} background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
+                <TouchableNativeFeedback onPress={() => { navigation.navigate("game1") }} background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
                     <Image source={require('../assets/play.png')}/>
                 </TouchableNativeFeedback> 
                 
+                {/*
                 <View style={styles.innerContainer}>
                     <TouchableNativeFeedback onPress={() => {history.push("/customize")}} background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
                         <Image source={require('../assets/customize.png')} style={styles.image}/>
@@ -25,7 +26,9 @@ const Mainmenu = ({ history }) => {
                     <TouchableNativeFeedback onPress={() => {history.push("/options")}} background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
                         <Image source={require('../assets/cog.png')} style={styles.image}/>
                     </TouchableNativeFeedback> 
-                    </View>
+                </View>
+                */}
+                
             </View>
         </>
     )

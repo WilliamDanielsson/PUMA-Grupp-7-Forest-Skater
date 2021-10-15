@@ -1,17 +1,16 @@
 import React from 'react'
 import { View, Text } from 'react-native'
+import Background from './children/Background'
+
 
 const Options = () => {
     return (
-        <View>
-            
-            {/* 
-                Denna komponent är själva options sidan 
-                där alla option-child components ska in 
-            */}
-
-            <Text>Options</Text>
-        </View>
+        <>
+            <Background/>
+            <View>
+                
+            </View>
+        </>
     )
 }
 
