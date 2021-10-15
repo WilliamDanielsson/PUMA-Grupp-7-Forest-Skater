@@ -1,15 +1,14 @@
-import React from 'react'
-import ChangeSkin from './ChangeSkin'
+import React, {useState} from 'react'
+import { View, Image, StyleSheet} from 'react-native'
 
-export default function UpdateSkin() {
-    const [indexHat, setIndexHat] = useState(1)
-    const [indexHead, setIndexHead] = useState(1)
-    const [indexSweater, setIndexSweater] = useState(1)
-    const [indextrouser, setIndexTrouser] = useState(1)
+export default function UpdateSkin({skins, counter}) {
 
-    return (
-        <div>
-            
-        </div>
+    return ( 
+        <>  
+           <View>
+                <Image source={displayItem}/>
+           </View>
+        </>
     )
 }
+ 
