@@ -1,14 +1,11 @@
 
-import { useNavigation } from '@react-navigation/core'
 import React, { useEffect, useState } from 'react'
 import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { auth } from '../firebase'
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-
-  const navigation = useNavigation()
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {

@@ -7,7 +7,9 @@
     "eject": "expo eject"
   },
   "dependencies": {
-    "@react-native-firebase/app": "^12.9.1",
+    "@react-native-firebase/app": "^12.9.2",
+    "@react-native-firebase/firestore": "^12.9.2",
+    "@react-navigation/core": "^6.1.0",
     "@react-navigation/native": "^6.0.6",
     "@react-navigation/native-stack": "^6.2.4",
     "expo": "~42.0.1",
@@ -22,13 +24,8 @@
     "react-native-game-engine": "^1.2.0",
     "react-native-gesture-handler": "~1.10.2",
     "react-native-reanimated": "~2.2.0",
-<<<<<<< HEAD
-    "react-native-safe-area-context": "^3.3.2",
-    "react-native-screens": "^3.4.0",
-=======
     "react-native-safe-area-context": "3.2.0",
     "react-native-screens": "~3.4.0",
->>>>>>> ceee628f1a4e370981d0de9d081e3dab93f80cb1
     "react-native-unimodules": "0.14.10",
     "react-native-volume-control": "^1.0.1",
     "react-native-web": "^0.17.5",

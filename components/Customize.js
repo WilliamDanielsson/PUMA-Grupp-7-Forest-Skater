@@ -1,14 +1,8 @@
-<<<<<<< HEAD
-import React from 'react'
-import { View, Text } from 'react-native'
-import Background from './children/Background'
-=======
 import React, {useState} from 'react'
 import {ImageBackground ,View, Text, StyleSheet, Image, TouchableNativeFeedback } from 'react-native'
 import Background from './children/Background' 
 import { imageHats } from './children/ImagesUrl'
 import UpdateSkin from './children/UpdateSkin'
->>>>>>> ceee628f1a4e370981d0de9d081e3dab93f80cb1
 
 const Customize = () => {
     const [counter, setCounter] = useState(1)
@@ -130,12 +124,6 @@ const Customize = () => {
     console.log(dude)
     return (
         <>
-<<<<<<< HEAD
-            {/* 
-                Denna komponent är själva customize sidan 
-                där alla child customize-components ska in 
-            */}
-=======
             <Background/>
             <View>
                 <ImageBackground style={styles.container}  source={require('../assets/skins/canvas/canvas.png')}>
@@ -143,19 +131,15 @@ const Customize = () => {
                     <TouchableNativeFeedback onPress={()=> setCounter(counter+1)} background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
                         <Image style={styles.rightButton} source={require('../assets/skins/buttons/right.png')}/>
                     </TouchableNativeFeedback>
->>>>>>> ceee628f1a4e370981d0de9d081e3dab93f80cb1
 
                 
 
-<<<<<<< HEAD
-=======
                     <TouchableNativeFeedback onPress={()=> setCounter(counter - 1)} background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
                         <Image style={[styles.leftButton, {paddingTop: 10}]} source={require('../assets/skins/buttons/left.png')}/>
                     </TouchableNativeFeedback>
                 </ImageBackground>     
             </View>
             
->>>>>>> ceee628f1a4e370981d0de9d081e3dab93f80cb1
         </>
     )
 }
