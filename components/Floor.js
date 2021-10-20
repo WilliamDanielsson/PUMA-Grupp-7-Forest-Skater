@@ -13,7 +13,6 @@ const Floor = props => {
 
     return(
         <View style={{
-            backgroundColor: color,
             position: 'absolute',
             left: xBody,
             top: yBody,
@@ -23,7 +22,7 @@ const Floor = props => {
     )
 }
 
-export default (world, color, pos, size) => {
+export default (world, pos, size) => {
     const initialFloor = Matter.Bodies.rectangle(
         pos.x,
         pos.y,
@@ -40,7 +39,6 @@ export default (world, color, pos, size) => {
 
     return {
         body: initialFloor,
-        color,
         pos,
         renderer: <Floor/>
     }
