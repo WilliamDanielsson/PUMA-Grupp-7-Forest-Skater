@@ -1,6 +1,6 @@
 import Matter from 'matter-js'
 import React from 'react'
-import { View } from 'react-native'
+import { View, Image } from 'react-native'
 
 const Obstacle = props => {
     const widthBody = props.body.bounds.max.x - props.body.bounds.min.x
@@ -12,20 +12,19 @@ const Obstacle = props => {
     const color = props.color;
 
     return(
-        <View style={{
-            borderWidth: 1,
-            borderColor: color,
-            borderStyle: 'solid',
+        <Image style={{
             position: 'absolute',
             left: xBody,
             top: yBody,
             width: widthBody,
             height: heightBody
-        }}/>
+        }}
+        source={require('../assets/Obstacles/Tree_1.png')}
+        />
     )
 }
 
-export default (world, label, color, pos, size) => {
+export default (world, label, pos, size) => {
     const initialObstacle = Matter.Bodies.rectangle(
         pos.x,
         pos.y,
@@ -41,7 +40,6 @@ export default (world, label, color, pos, size) => {
 
     return {
         body: initialObstacle,
-        color,
         pos,
         renderer: <Obstacle/>
     }

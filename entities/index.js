@@ -13,21 +13,19 @@ export default restart => {
 
     let world = engine.world
 
-    world.gravity.y = 0.8;
+    world.gravity.y = 0.7;
 
     const pipeSizePosA = getPipeSizePosPair()
     const pipeSizePosB = getPipeSizePosPair(windowWidth * 0.9)
     return {
         physics: {engine, world},
 
-        Player: Player(world, 'green', {x: 50 , y: 50}, {height: 40, width: 40}),
+        Player: Player(world, '..main1.png', {x: 80 , y: windowHeight - 120}, {height: 90, width: 40}),
 
-        Floor: Floor(world, 'green', {x: windowWidth / 2 , y: windowHeight}, {height: 50, width: windowWidth}),
+        Floor: Floor(world, {x: windowWidth / 2 , y: windowHeight - 25}, {height: 50, width: windowWidth}),
 
-        ObstacleTop1: Obstacle(world, 'ObstacleTop1', 'black', pipeSizePosA.pipeTop.pos, pipeSizePosA.pipeTop.size),
-        ObstacleBottom1: Obstacle(world, 'ObstacleBottom1', 'black', pipeSizePosA.pipeBottom.pos, pipeSizePosA.pipeBottom.size),
+        ObstacleBottom1: Obstacle(world, 'ObstacleBottom1', pipeSizePosA.pipeBottom.pos, pipeSizePosA.pipeBottom.size),
 
-        ObstacleTop2: Obstacle(world, 'ObstacleTop2', 'black', pipeSizePosB.pipeTop.pos, pipeSizePosB.pipeTop.size),
-        ObstacleBottom2: Obstacle(world, 'ObstacleBottom2', 'black', pipeSizePosB.pipeBottom.pos, pipeSizePosB.pipeBottom.size),
+        ObstacleBottom2: Obstacle(world, 'ObstacleBottom2', pipeSizePosB.pipeBottom.pos, pipeSizePosB.pipeBottom.size),
     }
 }
