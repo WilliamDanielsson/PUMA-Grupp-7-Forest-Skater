@@ -11,6 +11,7 @@ import HomeScreen from './components/HomeScreen';
 import LoginScreen from './components/LoginScreen';
 import {SessionProvider} from './contexts/SessionContext'
 
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
