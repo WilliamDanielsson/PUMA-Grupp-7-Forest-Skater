@@ -6,7 +6,10 @@ import { getUsers, auth, getUser } from '../firebase'
 
 const Leaderboard = () => {
     const [userList, setUserList] = useState([])
-    const [currentUser, setCurrentUser] = useState({})
+    const [currentUser, setCurrentUser] = useState({
+        name: '',
+        highscore: 0,
+    })
 
     useEffect(() => {
         handleLoad()
@@ -24,7 +27,7 @@ const Leaderboard = () => {
         auth.onAuthStateChanged(async (user) => {
             if (user) {
                 const temp = await getUser(user.uid)
-                if (!temp == currentUser) {
+                if (temp.name != currentUser.name) {
                     setCurrentUser(temp)
                 }
             }
