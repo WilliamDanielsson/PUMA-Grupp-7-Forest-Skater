@@ -1,7 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { View, Text } from 'react-native'
 
+import { getUsers } from '../firebase'
+
 const Leaderboard = () => {
+    useEffect(() => {
+        meme()
+      });
+
+    const meme = async () => {
+      const epic = await getUsers()
+      console.log(epic.data())
+    }
+
+
     return (
         <View>
             

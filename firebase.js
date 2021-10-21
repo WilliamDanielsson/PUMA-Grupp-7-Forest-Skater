@@ -23,5 +23,15 @@ if (firebase.apps.length === 0) {
 }
 
 const auth = firebase.auth()
+const db = firebase.firestore()
+
+// const getUsers = async () => {
+//   const userDocuments = db.collection("users").get()
+//   console.log(userDocumets)
+// }
+
+export const getUsers = () => {
+  return db.collection("users").doc("9PToSdJiPV6CxtVue4s6").get();
+}
 
 export { auth };

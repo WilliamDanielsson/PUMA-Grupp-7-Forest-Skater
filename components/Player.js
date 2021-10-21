@@ -1,6 +1,7 @@
 import Matter from 'matter-js'
 import React from 'react'
-import { View } from 'react-native'
+import { View, Image } from 'react-native'
+import { isRequired } from 'react-native/Libraries/DeprecatedPropTypes/DeprecatedColorPropType'
 
 const Player = props => {
     const widthBody = props.body.bounds.max.x - props.body.bounds.min.x
@@ -11,21 +12,23 @@ const Player = props => {
 
     const color = props.color;
 
+    const image = props.image;
+
     return(
-        <View style={{
-            borderWidth: 1,
-            borderColor: color,
-            borderStyle: 'solid',
+        <Image style={{
+           // backgroundColor: color,
             position: 'absolute',
             left: xBody,
             top: yBody,
             width: widthBody,
             height: heightBody
-        }}/>
+        }}
+        source={require('../assets/skins/dude/main1.png')}
+        />
     )
 }
 
-export default (world, color, pos, size) => {
+export default (world, image, pos, size) => {
     const initialPlayer = Matter.Bodies.rectangle(
         pos.x,
         pos.y,
@@ -38,7 +41,8 @@ export default (world, color, pos, size) => {
 
     return {
         body: initialPlayer,
-        color,
+        //color,
+        image,
         pos,
         renderer: <Player/>
     }
