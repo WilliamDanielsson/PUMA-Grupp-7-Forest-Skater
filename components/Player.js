@@ -1,7 +1,9 @@
 import Matter from 'matter-js'
-import React from 'react'
+import React, {useContext } from 'react'
 import { View, Image } from 'react-native'
 import { isRequired } from 'react-native/Libraries/DeprecatedPropTypes/DeprecatedColorPropType'
+import { useSession } from '../contexts/SessionContext'
+
 
 const Player = props => {
     const widthBody = props.body.bounds.max.x - props.body.bounds.min.x
@@ -11,10 +13,14 @@ const Player = props => {
     const yBody = props.body.position.y - heightBody / 2
 
     const color = props.color;
-
     const image = props.image;
-
+    
+    const {value, value2} = useSession()
+    const [valueImg, setValueImg] = value2;
+    const skin = valueImg.path;
     return(
+        <>
+        
         <Image style={{
            // backgroundColor: color,
             position: 'absolute',
@@ -23,8 +29,9 @@ const Player = props => {
             width: widthBody,
             height: heightBody
         }}
-        source={require('../assets/skins/dude/main1.png')}
+        source={skin}
         />
+        </>
     )
 }
 
