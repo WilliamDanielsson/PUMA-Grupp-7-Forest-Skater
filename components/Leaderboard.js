@@ -22,7 +22,7 @@ const Leaderboard = () => {
             setUserList(list)
         }
     }
-
+    
     const handleUser = () => {
         auth.onAuthStateChanged(async (user) => {
             if (user) {

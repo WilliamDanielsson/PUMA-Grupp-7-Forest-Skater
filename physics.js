@@ -1,10 +1,10 @@
 import Matter from "matter-js";
 import { getBackgroundPos, getFloorPos, getPipeSizePosPair } from "./utils/random";
-
 import {Dimensions} from 'react-native'
 
 const windowHeight = Dimensions.get('window').height
 const windowWidth = Dimensions.get('window').width
+let gameOver = false
 let ticks = 0
 let chunk = 15
 
@@ -88,7 +88,10 @@ const Physics = (entities, {touches, time, dispatch}) => {
         const objectB = event.pairs[0].bodyB.label
 
         if(objectA == 'Player' && objectB == 'ObstacleBottom1' || objectA == 'ObstacleBottom1' && objectB == 'Player' || objectA == 'Player' && objectB == 'ObstacleBottom2' || objectA == 'ObstacleBottom2' && objectB == 'Player'){
-            dispatch({type: 'game_over'})
+            if(!gameOver){
+                dispatch({type: 'game_over'})
+                gameOver = true
+            }
         }
     })
 

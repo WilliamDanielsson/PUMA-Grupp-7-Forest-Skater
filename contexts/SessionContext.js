@@ -9,12 +9,15 @@ export const useSession = () => {
 const SessionProvider = ({ children }) => {
     const [volume, setVolume] = useState(0);
     const [skin, setSkin] = useState('../assets/skins/dude/dude4.png')
+    const [gameOver, setGameOver] = useState(false)
 
     const value = {
         volume,
         setVolume,
         skin,
-        setSkin
+        setSkin,
+        gameOver,
+        setGameOver
     }
 
     return (

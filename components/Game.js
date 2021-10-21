@@ -5,6 +5,7 @@ import entities from '../entities'
 import Physics from '../physics'
 import { useState, useEffect } from 'react'
 import Background from './children/Background'
+import { updateHighScore, auth } from '../firebase';
 
 let message = 'null'
 
@@ -12,6 +13,7 @@ const Game = ({ navigation }) => {
   const [running, setRunning] = useState(false)
   const [gameEngine, setGameEngine] = useState(null)
   const [currentScore, setCurrentScore] = useState(0)
+
     useEffect(() => {
         setRunning(true)
     }, [])
@@ -36,6 +38,12 @@ const Game = ({ navigation }) => {
                         message = 'GameOver'
                         setRunning(false)
                         gameEngine.stop()
+                        auth.onAuthStateChanged( async (user) => {
+                            if (user) {
+                                await updateHighScore(user.uid, currentScore)
+                                console.log("mememem")
+                             }
+                        })
                         break;
                     case 'new_score':
                         setCurrentScore(currentScore + 1)
