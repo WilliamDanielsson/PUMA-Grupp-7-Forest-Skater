@@ -10,6 +10,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './components/HomeScreen';
 import LoginScreen from './components/LoginScreen';
 
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {

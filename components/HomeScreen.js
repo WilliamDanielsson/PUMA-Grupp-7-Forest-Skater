@@ -1,10 +1,10 @@
-import { useNavigation } from '@react-navigation/core'
 import React from 'react'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View, Image, TouchableNativeFeedback} from 'react-native'
+import { color } from 'react-native-reanimated'
 import { auth } from '../firebase'
+import Background from './children/Background'
 
-const HomeScreen = () => {
-  const navigation = useNavigation()
+const HomeScreen = ({ navigation }) => {
 
   const handleSignOut = () => {
     auth
@@ -16,15 +16,24 @@ const HomeScreen = () => {
   }
 
   return (
+    <>
+    <Background/>
     <View style={styles.container}>
-      <Text>Email: {auth.currentUser?.email}</Text>
+      <TouchableNativeFeedback onPress={() => {navigation.navigate("home")}} background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
+                    <Image style={styles.backbtn} source={require('../assets/back.png')}/>
+      </TouchableNativeFeedback>
+      <Image source={require('../assets/pixil.png')}/>
+
+      <Text style={styles.text1}>Email:</Text>
+      <Text style={styles.text2}>{auth.currentUser?.email}</Text>
       <TouchableOpacity
         onPress={handleSignOut}
         style={styles.button}
       >
-        <Text style={styles.buttonText}>Sign out</Text>
+        <Image source={require('../assets/Group152.png')}/>
       </TouchableOpacity>
     </View>
+    </>
    )
   
 }
@@ -37,17 +46,23 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-   button: {
-    backgroundColor: '#0782F9',
-    width: '60%',
-    padding: 15,
-    borderRadius: 10,
-    alignItems: 'center',
-    marginTop: 40,
+  backbtn:{
+    position: 'absolute',
+    top: '2%',
+    left: '2%',
   },
-  buttonText: {
-    color: 'white',
-    fontWeight: '700',
-    fontSize: 16,
+  text1: {
+    position: 'absolute',
+    top: '35%',
+    left: '45%',
+    fontSize: 24,
+    color: '#6B4B40',
+  },
+  text2: {
+    position: 'absolute',
+    top: '45%',
+    left: '39%',
+    fontSize: 24,
+    color: '#6B4B40',
   },
 })
