@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react'
 import { KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
-import { auth } from '../firebase'
+import { auth, createUserDocument } from '../firebase'
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('')
@@ -17,11 +17,12 @@ const LoginScreen = ({ navigation }) => {
   }, [])
 
 
-  const handleSignUp = () => {
+  const handleSignUp =() => {
     auth
       .createUserWithEmailAndPassword(email, password)
-      .then(userCredentials => {
+      .then(async (userCredentials) => {
         const user = userCredentials.user;
+        await createUserDocument(user.uid, user.email)
         console.log('Registered with:', user.email);
       })
       .catch(error => alert(error.message))

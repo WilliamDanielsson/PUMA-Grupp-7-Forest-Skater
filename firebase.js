@@ -30,8 +30,49 @@ const db = firebase.firestore()
 //   console.log(userDocumets)
 // }
 
-export const getUsers = () => {
-  return db.collection("users").doc("9PToSdJiPV6CxtVue4s6").get();
+export const getUsers = async () => {
+  const userRef = db.collection("users")
+  const snapshot = await userRef.get();
+
+  try {
+    return snapshot.docs.map(doc => doc.data());
+  } catch {
+    console.log("Error in returning data")
+    return
+  }
+}
+
+export const getUser = async (uid) => {
+  const userRef = db.collection("users").doc(uid)
+  const snapshot = await userRef.get()
+  
+  try {
+    if (snapshot.exists) {
+      return snapshot.data()
+    }
+  } catch {
+    console.log("Error in returning data")
+    return
+  }
+}
+
+export const createUserDocument = async (uid, email) => {
+  const userRef = db.doc(`users/${uid}`)
+  const snapshot = await userRef.get()
+
+  if (!snapshot.exists) {
+      const name = email;
+      const highscore = 0;
+
+      try {
+          userRef.set({
+              name,
+              highscore,
+          })
+        } catch(error) {
+          console.log("Error in creating user", error)
+      }
+    }
 }
 
 export { auth };
