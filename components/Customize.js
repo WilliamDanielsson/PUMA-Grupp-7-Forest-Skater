@@ -65,11 +65,10 @@ const Customize = ( {navigation} ) => {
 
 const styles = StyleSheet.create({
     container: {
-        
         position: 'absolute',      
         width: 330,
         height: 330,
-        right: 170,
+        right: '25%',
         marginTop: 10,
 
     },
@@ -81,7 +80,7 @@ const styles = StyleSheet.create({
         marginTop: 40,
 
     },
-        rightButton: {
+    rightButton: {
         position: 'absolute',
         right: 40,
         marginTop: 130,
@@ -96,7 +95,7 @@ const styles = StyleSheet.create({
         width: 300,
         height: 50,
         marginTop: 340,
-        right: 175,
+        right: '26%',
     },
     returnButton: {
         position: 'absolute',
