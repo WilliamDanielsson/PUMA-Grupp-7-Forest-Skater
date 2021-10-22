@@ -9,7 +9,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './components/HomeScreen';
 import LoginScreen from './components/LoginScreen';
-import { SessionProvider } from './contexts/SessionContext';
+import {SessionProvider} from './contexts/SessionContext'
+
 
 const Stack = createNativeStackNavigator();
 

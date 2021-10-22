@@ -1,6 +1,7 @@
 import React from 'react'
-import { View, Image, StyleSheet, TouchableNativeFeedback, ImageBackground } from 'react-native'
-import Background from './children/Background' 
+import { View, Image, Text, TouchableNativeFeedback } from 'react-native'
+import Background from './children/Background'
+
 
 const Options = ({navigation}) => {
     return (

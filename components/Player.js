@@ -1,11 +1,12 @@
 import Matter from 'matter-js'
-import React, {useContext } from 'react'
+import React, { useEffect } from 'react'
 import { View, Image } from 'react-native'
 import { isRequired } from 'react-native/Libraries/DeprecatedPropTypes/DeprecatedColorPropType'
-import { useSession } from '../contexts/SessionContext'
-
+import { useSession } from "../contexts/SessionContext";
 
 const Player = props => {
+    const { skin } = useSession()
+
     const widthBody = props.body.bounds.max.x - props.body.bounds.min.x
     const heightBody = props.body.bounds.max.y - props.body.bounds.min.y
 
