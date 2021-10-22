@@ -75,4 +75,19 @@ export const createUserDocument = async (uid, email) => {
     }
 }
 
+export const updateHighScore = async (uid, score) => {
+  const userRef = db.doc(`users/${uid}`)
+  const snapshot = await userRef.get()
+
+  if (snapshot.exists) {
+    if (snapshot.data().highscore < score) {
+      userRef.update({
+        highscore: score,
+      }).then(() => {
+        console.log("New Highscore!")
+      })
+    }
+  }
+}
+
 export { auth };

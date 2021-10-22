@@ -8,17 +8,9 @@ export const useSession = () => {
 
 const SessionProvider = ({ children }) => {
     const [volume, setVolume] = useState(0);
-    const [skin, setSkin] = useState('../assets/skins/dude/dude4.png')
-
-    const value = {
-        volume,
-        setVolume,
-        skin,
-        setSkin
-    }
-
+    const [skin, setSkin] = useState({path: require(`../assets/skins/dude/dude2.png`)})
     return (
-        <SessionContext.Provider value={value}>
+        <SessionContext.Provider value={{value: [volume, setVolume], value2: [skin, setSkin]}}>
             {children}
         </SessionContext.Provider>
     )

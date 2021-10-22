@@ -2,19 +2,98 @@ import React from 'react';
 import { View, Text, TouchableOpacity, Image, ImageBackground, TouchableNativeFeedback } from 'react-native';
 import { GameEngine } from 'react-native-game-engine'
 import entities from '../entities'
-import Physics from '../physics'
+import Physics from './Physics'
 import { useState, useEffect } from 'react'
 import Background from './children/Background'
+import { Audio } from 'expo-av'
+import { updateHighScore, auth } from '../firebase';
 
 let message = 'null'
+let playing = false
+let jumpMessage = false
+let sonic = 'sonic'
+let dreamscape = 'dreamscape'
+let jumpSound = 'jumpSound'
+let deathSound = 'deathSound'
+
 
 const Game = ({ navigation }) => {
+  let messageGameOverHasBeenSent = false;
+  const [soundEffect, setSoundEffect] = React.useState()
+  const [themeSong, setThemeSong] = React.useState()
   const [running, setRunning] = useState(false)
   const [gameEngine, setGameEngine] = useState(null)
   const [currentScore, setCurrentScore] = useState(0)
+
     useEffect(() => {
         setRunning(true)
     }, [])
+
+    
+     async function playSoundEffect(songName) {
+        
+         if(songName == 'dreamscape'){
+            // console.log('Loading Sound');
+             const { sound } = await Audio.Sound.createAsync(
+             require('../Dreamscape.mp3')
+             );
+             setSoundEffect(sound);
+    
+            // console.log('Playing Sound');
+             await sound.playAsync();
+         }
+
+         if(songName == 'jumpSound'){
+            // console.log('Loading Sound');
+             const { sound } = await Audio.Sound.createAsync(
+             require('../jumpSound2.mp3')
+             );
+             setSoundEffect(sound);
+    
+           //  console.log('Playing Sound');
+             await sound.playAsync();
+         }
+
+         if(songName == 'deathSound'){
+            // console.log('Loading Sound');
+             const { sound } = await Audio.Sound.createAsync(
+             require('../deathSound.mp3')
+             );
+             setSoundEffect(sound);
+    
+           //  console.log('Playing Sound');
+             await sound.playAsync();
+         }
+     }
+
+         React.useEffect(() => {
+             return soundEffect
+               ? () => {
+                  // console.log('Unloading Sound');
+                   soundEffect.unloadAsync(); }
+               : soundEffect;
+           }, [soundEffect]);
+
+
+          async function playThemeSong() {
+            playing = true
+            console.log('Loading Sound');
+            const { sound } = await Audio.Sound.createAsync(
+               require('../gottaGoFast.mp3')
+            );
+            setThemeSong(sound);
+        
+            console.log('Playing Sound');
+            await sound.playAsync(); }
+        
+           React.useEffect(() => {
+             return themeSong
+               ? () => {
+                   playing = false
+                   console.log('Unloading Sound');
+                   themeSong.unloadAsync(); }
+               : undefined;
+           }, [themeSong]);
     
     return (
         <>
@@ -36,11 +115,35 @@ const Game = ({ navigation }) => {
                         message = 'GameOver'
                         setRunning(false)
                         gameEngine.stop()
+                        if(!messageGameOverHasBeenSent){
+                            auth.onAuthStateChanged( async (user) => {
+                                if (user) {
+                                    await updateHighScore(user.uid, currentScore)
+                                    console.log("mememem")
+                                 }
+                            })
+                            messageGameOverHasBeenSent = true;
+                            console.log("Game_Over")
+                            themeSong.pauseAsync();
+                            playSoundEffect(deathSound)
+                            // return themeSong
+                            // ? () => {
+                            //    // playing = false
+                            //     console.log('Unloading Sound');
+                            //     themeSong.unloadAsync(); }
+                            // : undefined;
+                        }
                         break;
                     case 'new_score':
                         setCurrentScore(currentScore + 1)
                         break;
+                    case 'Jumped':
+                        jumpMessage = true
+                        playSoundEffect(jumpSound)
+                        break;
+
                     }
+
                 }}
                 style={{position: 'absolute', top: 0, left: 0, right: 0, bottom: 0}}
             >
@@ -49,6 +152,7 @@ const Game = ({ navigation }) => {
                     <TouchableOpacity style={{width: 40, height: 40, marginTop: -40}}
                         onPress={() => {
                         message = 'Pause'
+                        themeSong.pauseAsync();
                         setRunning(false)
 
                     }}>
@@ -94,6 +198,8 @@ const Game = ({ navigation }) => {
 
                     <TouchableOpacity style={{width: 173, height: 55, marginLeft: 70, marginTop: 5}}
                     onPress={() => {
+                        //playing = false
+                        themeSong.replayAsync();
                         setCurrentScore(0)
                         setRunning(true)
                         gameEngine.swap(entities())
@@ -133,6 +239,7 @@ const Game = ({ navigation }) => {
 
                     <TouchableOpacity style={{width: 173, height: 55, marginLeft: 70, marginTop: 5}}
                         onPress={() => {
+                            themeSong.playAsync();
                             setRunning(true)
                             message = 'null'
                         }}
@@ -142,7 +249,11 @@ const Game = ({ navigation }) => {
                     </TouchableOpacity>
 
                 </ImageBackground>
-            : null }         
+            : null }
+
+            {running && !playing ? 
+            playThemeSong()
+            : null }          
 
         </View>
         </>
