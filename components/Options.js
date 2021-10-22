@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Image, Text, TouchableNativeFeedback } from 'react-native'
+import { View, Image, Text, TouchableNativeFeedback, StyleSheet, ImageBackground } from 'react-native'
 import Background from './children/Background'
 
 

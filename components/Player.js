@@ -5,8 +5,7 @@ import { isRequired } from 'react-native/Libraries/DeprecatedPropTypes/Deprecate
 import { useSession } from "../contexts/SessionContext";
 
 const Player = props => {
-    const { skin } = useSession()
-
+    
     const widthBody = props.body.bounds.max.x - props.body.bounds.min.x
     const heightBody = props.body.bounds.max.y - props.body.bounds.min.y
 
