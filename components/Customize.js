@@ -1,185 +1,109 @@
-import React, {useState} from 'react'
-import {ImageBackground ,View, Text, StyleSheet, Image, TouchableNativeFeedback } from 'react-native'
+import React, {useState, useEffect, useContext} from 'react'
+import {ImageBackground , View, StyleSheet, Image, TouchableNativeFeedback } from 'react-native'
 import Background from './children/Background' 
-import { imageHats } from './children/ImagesUrl'
 import UpdateSkin from './children/UpdateSkin'
+import {getImage} from './children/ImagesUrl'
+import { useSession } from '../contexts/SessionContext'
 
-const Customize = () => {
+
+const Customize = ( {navigation} ) => {
+    //Update image on counter number 
     const [counter, setCounter] = useState(1)
-    const [indexHead, setIndexHead] = useState(1)
-    const [indexSweater, setIndexSweater] = useState(1)
-    const [indexTrouser, setIndexTrouser] = useState(1)
+    //Set default object.
+    const [imagePath, setImagePath] = useState({path: getImage(2)})
+    //Call context function
+    const {value, value2} = useSession()
+    //Access data from the context
+    const [skin, setSkin] = value2;
     
-    const skin = [
-        {
-            hats: [
-                {
-                    image: require( `../assets/skins/hats/hat1.png`),
-                },
-                {
-                    image: require( `../assets/skins/hats/hat2.png`),
-                },
-                {
-                    image: require( `../assets/skins/hats/hat3.png`),
-                },
-                {
-                    image: require( `../assets/skins/hats/hat4.png`),
-                },
-                {
-                    image: require( `../assets/skins/hats/hat5.png`),
-                },
-            ]
-        },
-        {
-            heads: [
-                {
-                    image: require( '../assets/skins/heads/head1.png'),
-                },
-                {
-                    image: require( '../assets/skins/heads/head2.png'),
-                },
-                {
-                    image: require( '../assets/skins/heads/head3.png'),
-                },
-                {
-                    image: require( '../assets/skins/heads/head4.png'),
-                },
-                {
-                    image: require( '../assets/skins/heads/head5.png'),
-                },
-                {
-                    image: require( '../assets/skins/heads/head6.png'),
-                },
-            ]
+    useEffect(() => {
+        setImagePath({
+            path: getImage(counter)
+        });
+        setSkin ({
+            path: getImage(counter)
+        })
+    }, [counter])
 
-        },
-        {
-            sweaters: [
-                {
-                    image: require( '../assets/skins/sweaters/cloth1.png'),
-                },
-                {
-                    image: require( '../assets/skins/sweaters/cloth2.png'),
-                },
-                {
-                    image: require( '../assets/skins/sweaters/cloth3.png'),
-                },
-                {
-                    image: require( '../assets/skins/sweaters/cloth4.png'),
-                },
-                {
-                    image: require( '../assets/skins/sweaters/cloth5.png'),
-                },
-                {
-                    image: require( '../assets/skins/sweaters/cloth6.png'),
-                },
-                {
-                    image: require( '../assets/skins/sweaters/cloth7.png'),
-                },
-            ]
-        },
-        {
-            trousers: [
-                {
-                    image: require( '../assets/skins/trousers/pants1.png'),
-                },
-                {
-                    image: require( '../assets/skins/trousers/pants2.png'),
-                },
-                {
-                    image: require( '../assets/skins/trousers/pants3.png'),
-                },
-                {
-                    image: require( '../assets/skins/trousers/pants4.png'),
-                },
-                {
-                    image: require( '../assets/skins/trousers/pants5.png'),
-                },
-            ]
+    const changeUrl = () => {
+        if (counter >= 4) {
+            setCounter(1);
         }
-    ]
-   
-    const dudes = [
-        {
-            Id: 1,
-            image: require(`../assets/skins/dude/dude1.png`),
-        },
-        {
-            Id: 2,
-            image: require(`../assets/skins/dude/dude2.png`),
-        },
-        {
-            Id: 3,
-            image: require(`../assets/skins/dude/dude3.png`),
-        },
-        {
-            Id: 4,
-            image: require(`../assets/skins/dude/dude4.png`),
-        },
+        else if (counter <=  1) {
+            setCounter(2);
+        }
+        else {
+            setCounter(counter + 1);
+        }
+    } 
 
-
-    ]
-
-    const dude = dudes.find(obj => obj.Id === counter)
-    console.log(dude)
     return (
         <>
             <Background/>
             <View>
                 <ImageBackground style={styles.container}  source={require('../assets/skins/canvas/canvas.png')}>
-                    <Image style={styles.dude} source={require('../assets/skins/dude/dude4.png')}/>
-                    <TouchableNativeFeedback onPress={()=> setCounter(counter+1)} background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
+                    <Image style={styles.dude} source={imagePath.path}/>
+                    <TouchableNativeFeedback onPress={()=> changeUrl()} background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
                         <Image style={styles.rightButton} source={require('../assets/skins/buttons/right.png')}/>
                     </TouchableNativeFeedback>
-
-                
-
-                    <TouchableNativeFeedback onPress={()=> setCounter(counter - 1)} background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
+                    <TouchableNativeFeedback onPress={()=> changeUrl()} background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
                         <Image style={[styles.leftButton, {paddingTop: 10}]} source={require('../assets/skins/buttons/left.png')}/>
                     </TouchableNativeFeedback>
-                </ImageBackground>     
+                    <TouchableNativeFeedback onPress={() => {navigation.navigate("home")}} background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
+                    <Image style={[styles.returnButton]} source={require('../assets/skins/buttons/x.png')}/>
+                </TouchableNativeFeedback>
+                </ImageBackground>  
+                <TouchableNativeFeedback onPress={() => {navigation.navigate("game")}} background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
+                    <Image style={[styles.gameButton, {paddingTop: 10}]} source={require('../assets/skins/buttons/play2.png')}/>
+                </TouchableNativeFeedback>
+
             </View>
             
         </>
     )
 }
 
-
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        alignItems: 'center',
-        width: 350,
-        height: 350,
-        flexDirection: 'column',
-        marginTop: 30,
+        position: 'absolute',      
+        width: 330,
+        height: 330,
+        right: '25%',
+        marginTop: 10,
 
     },
     dude: {
-        alignItems: 'center',
-        width: 120,
+        position: 'absolute',
+        width: 100,
         height: 230,
-        marginTop: 50,
+        right: 110,
+        marginTop: 40,
 
     },
-        rightButton: {
+    rightButton: {
         position: 'absolute',
-        right: 50,
-        marginTop: 40,
+        right: 40,
+        marginTop: 130,
     },
     leftButton: {
         position: 'absolute',
         left: 50,
-        marginTop: 40,
+        marginTop: 130,
     },
-    hat: {
+    gameButton: {
         position: 'absolute',
-        
-        width: 95,
-        height: 70,
-        marginTop: 45,
+        width: 300,
+        height: 50,
+        marginTop: 340,
+        right: '26%',
+    },
+    returnButton: {
+        position: 'absolute',
+        marginTop: 10,
+        left: 10,
     }
 
     })
 
 export default Customize
+

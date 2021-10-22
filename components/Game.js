@@ -6,6 +6,7 @@ import Physics from './Physics'
 import { useState, useEffect } from 'react'
 import Background from './children/Background'
 import { Audio } from 'expo-av'
+import { updateHighScore, auth } from '../firebase';
 
 let message = 'null'
 let playing = false
@@ -23,6 +24,7 @@ const Game = ({ navigation }) => {
   const [running, setRunning] = useState(false)
   const [gameEngine, setGameEngine] = useState(null)
   const [currentScore, setCurrentScore] = useState(0)
+
     useEffect(() => {
         setRunning(true)
     }, [])
@@ -114,6 +116,12 @@ const Game = ({ navigation }) => {
                         setRunning(false)
                         gameEngine.stop()
                         if(!messageGameOverHasBeenSent){
+                            auth.onAuthStateChanged( async (user) => {
+                                if (user) {
+                                    await updateHighScore(user.uid, currentScore)
+                                    console.log("mememem")
+                                 }
+                            })
                             messageGameOverHasBeenSent = true;
                             console.log("Game_Over")
                             themeSong.pauseAsync();

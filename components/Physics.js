@@ -99,15 +99,15 @@ const Physics = (entities, {touches, time, dispatch}) => {
             
             Matter.Body.setPosition(entities[`Background${index}`].body, backgroundPos.background.pos) 
         }
-
-            Matter.Body.translate(entities[`Background${index}`].body, {x: -50, y: 0})
+//-0.5
+            Matter.Body.translate(entities[`Background${index}`].body, {x: -0.5, y: 0})
         
         if(entities[`ObstacleBottom${index}`].body.bounds.max.x <= 0){
             const pipeSizePos = getPipeSizePosPair(windowWidth * 0.9);
             
             Matter.Body.setPosition(entities[`ObstacleBottom${index}`].body, pipeSizePos.pipeBottom.pos) 
         }
-
+//10
         Matter.Body.translate(entities[`ObstacleBottom${index}`].body, {x: -10, y: 0}) 
 
         if(entities[`Floor${index}`].body.bounds.max.x <= 0){
@@ -115,7 +115,7 @@ const Physics = (entities, {touches, time, dispatch}) => {
             
             Matter.Body.setPosition(entities[`Floor${index}`].body, floorPos.floor.pos) 
         }
-
+//-10
         Matter.Body.translate(entities[`Floor${index}`].body, {x: -10, y: 0})
     }
     
