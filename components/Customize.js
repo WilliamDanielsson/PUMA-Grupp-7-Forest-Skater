@@ -3,14 +3,17 @@ import {ImageBackground , View, StyleSheet, Image, TouchableNativeFeedback } fro
 import Background from './children/Background' 
 import UpdateSkin from './children/UpdateSkin'
 import {getImage} from './children/ImagesUrl'
+import { getDogeImage} from './children/ImageDodge'
 import { useSession } from '../contexts/SessionContext'
 
 
 const Customize = ( {navigation} ) => {
     //Update image on counter number 
     const [counter, setCounter] = useState(1)
-    //Set default object.
+    //Set default object. Player standing upright
     const [imagePath, setImagePath] = useState({path: getImage(2)})
+    
+    const [imageDodgePath, setImageDodgePath] = useState({path: getImage(2)})
     //Call context function
     const {value, value2} = useSession()
     //Access data from the context
@@ -19,6 +22,9 @@ const Customize = ( {navigation} ) => {
     useEffect(() => {
         setImagePath({
             path: getImage(counter)
+        });
+        setImageDodgePath({
+            path: getDogeImage(counter)
         });
         setSkin ({
             path: getImage(counter)

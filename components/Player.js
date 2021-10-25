@@ -17,7 +17,10 @@ const Player = props => {
     
     const {value, value2} = useSession()
     const [valueImg, setValueImg] = value2;
+    const [valueImgD, setValueImgD] = value;
+
     const skin = valueImg.path;
+    const skinDodge = valueImgD.path;
     return(
         <>
         
