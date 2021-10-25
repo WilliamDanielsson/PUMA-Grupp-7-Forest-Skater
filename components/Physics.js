@@ -113,14 +113,14 @@ const Physics = (entities, {touches, time, dispatch}) => {
             }
         }) 
       
-    
-    Matter.Engine.update(engine, 32)
+   // console.log(time)
+    Matter.Engine.update(engine, 16.666)
 
-     ticks++
-     if(ticks == chunk){
-         dispatch({type: 'new_score'}) 
-         chunk = 15 + ticks
-     }
+    //  ticks++
+    //  if(ticks == chunk){
+    //      dispatch({type: 'new_score'}) 
+    //      chunk = 15 + ticks
+    //  }
    
     for (let index = 1; index <= 2; index++) {
 
@@ -147,7 +147,7 @@ const Physics = (entities, {touches, time, dispatch}) => {
     for (let index = 1; index <= 10; index++) {
          if(entities[`Obstacle${index}`].body.bounds.max.x <= 50 && entities[`Obstacle${index}`].body.bounds.max.x > 45){
              entities[`Obstacle${index}`].score = true
-             dispatch({type: 'new_score'})
+             //dispatch({type: 'new_score'})
          }
 
          if(entities[`Obstacle${index}`].body.bounds.max.x >= firstWaveBiggest && index < 6){

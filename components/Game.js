@@ -116,6 +116,7 @@ const Game = ({ navigation }) => {
                ? () => {
                    playing = false
                    console.log('Unloading Sound');
+                   playing = false
                    themeSong.unloadAsync(); }
                : undefined;
            }, [themeSong]);
