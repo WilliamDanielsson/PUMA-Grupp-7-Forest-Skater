@@ -3,7 +3,7 @@ import { View, Image, StyleSheet, TouchableNativeFeedback } from 'react-native'
 import Background from './children/Background'
 
 const Mainmenu = ({ navigation }) => {
-
+    
     return (
         <>
             <Background/>

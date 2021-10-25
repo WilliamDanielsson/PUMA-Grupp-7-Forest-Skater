@@ -26,7 +26,7 @@ const Background = props => {
     )
 }
 
-export default (world, label, image, pos, size) => {
+export default (world, label, image, isObstacle, pos, size) => {
     const initialBackground = Matter.Bodies.rectangle(
         pos.x,
         pos.y,
@@ -35,6 +35,7 @@ export default (world, label, image, pos, size) => {
         { 
             label,
             isStatic: true,
+            isObstacle
     
         }
     )

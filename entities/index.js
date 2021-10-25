@@ -1,47 +1,105 @@
 import Matter from "matter-js"
 import Floor from "../components/Floor";
 import Player from "../components/Player";
+import DodgingPlayer from "../components/DodgingPlayer";
 
 import { Dimensions } from "react-native";
 import Obstacle from "../components/Obstacle";
-import { getBackgroundPos, getFloorPos, getPipeSizePosPair } from "../utils/random";
+import { getBackgroundPos, getLowBirdsStatsFirstWave, getHighBirdsStatsFirstWave, getBushStatsFirstWave, getTreeStatsFirstWave, getFloorBackgroundPos, getFloorPos, getObstaclePos, resetLists, getLowBirdsStatsSecondWave, getHighBirdsStatsSecondWave, getBushStatsSecondWave, getTreeStatsSecondWave} from "../utils/random";
 import Background from "../components/Background";
+import FloorBackground from "../components/FloorBackground";
+import {getImage} from '../components/children/ImagesUrl'
 
 const windowHeight = Dimensions.get('window').height
 const windowWidth = Dimensions.get('window').width
+let backgroundA = undefined
+let backgroundB = undefined
+let Tree1 = undefined
+let Tree2 = undefined
+let Tree3 = undefined
+let Bush1 = undefined
+let Bush2 = undefined
+let Bush3 = undefined
+let Birds1 = undefined
+let Birds2 = undefined
+let Birds3 = undefined
+let Birds4 = undefined
+let floor = undefined
+let floorBackgroundA = undefined
+let floorBackgroundB  = undefined
+
+let dodgingPlayerImage = undefined
+
+
 export default restart => {
+   
     let engine = Matter.Engine.create({enableSleeping: false})
 
     let world = engine.world
 
-    //world.gravity.y = 0.7;
     world.gravity.y = 1.5;
+    
+    backgroundA = getBackgroundPos()
+    backgroundB = getBackgroundPos(windowWidth * 8.02)
 
-    const pipeSizePosA = getPipeSizePosPair()
-    const pipeSizePosB = getPipeSizePosPair(windowWidth * 0.9)
+    Tree1 = getTreeStatsFirstWave()
+    Tree2 = getTreeStatsSecondWave()
+    Tree3 = getTreeStatsFirstWave()
+    Bush1 = getBushStatsSecondWave()
+    Bush2 = getBushStatsSecondWave()
+    Bush3 = getBushStatsFirstWave()
+    Birds1 = getLowBirdsStatsFirstWave()
+    Birds2 = getHighBirdsStatsFirstWave()
+    Birds3 = getLowBirdsStatsSecondWave()
+    Birds4 = getHighBirdsStatsSecondWave()
 
-    const floorA = getFloorPos()
-    const floorB = getFloorPos(windowWidth)
+    floor = getFloorPos()
 
-    const backgroundA = getBackgroundPos()
-    const backgroundB = getBackgroundPos(windowWidth * 8.02)
+    floorBackgroundA = getFloorBackgroundPos()
+    floorBackgroundB = getFloorBackgroundPos(windowWidth * 0.99)
+
+    dodgingPlayerImage = getImage(8)
+
+    resetLists()
+        
     return {
         physics: {engine, world},
 
-        Background1: Background(world, 'Background1', '../assets/background.png', backgroundA.background.pos, backgroundA.background.size),
+        Background1: Background(world, 'Background1', '../assets/background.png', false, backgroundA.background.pos, backgroundA.background.size),
 
-        Background2: Background(world, 'Background1', '../assets/background.png',  backgroundB.background.pos, backgroundB.background.size),
+        Background2: Background(world, 'Background1', '../assets/background.png',  false, backgroundB.background.pos, backgroundB.background.size),
 
-        Player: Player(world, '../assets/skins/dude/main1.png', {x: 80 , y: windowHeight - 120}, {height: 90, width: 40}),
+        Player: Player(world, '../assets/skins/dude/main1.png', false, {x: 80 , y: windowHeight - 120}, {height: 90, width: 40}),
 
-        //Floor: Floor(world, '../assets/environment/grass.png', {x: windowWidth / 2 , y: windowHeight - 25}, {height: 50, width: windowWidth}),
+        DodgingPlayer: DodgingPlayer(world, 'DodgingPlayer', dodgingPlayerImage, false, {x: 80 , y: windowHeight - 475}, {height: 40, width: 90}),
 
-        Floor1: Floor(world, 'Floor1', '../assets/environment/grass.png', floorA.floor.pos, floorA.floor.size),
+        Floor: Floor(world, 'Floor', false, floor.floor.pos, floor.floor.size),
 
-        Floor2: Floor(world, 'Floor2', '../assets/environment/grass.png', floorB.floor.pos, floorB.floor.size),
+        Ceiling: Floor(world, 'Ceiling,', false, {x: windowWidth / 2  , y: windowHeight - 450}, {height: 50, width: windowWidth}),
 
-        ObstacleBottom1: Obstacle(world, 'ObstacleBottom1', pipeSizePosA.pipeBottom.pos, pipeSizePosA.pipeBottom.size),
+        FloorBackground1: FloorBackground(world, 'FloorBackground1', '../assets/environment/grass.png', false, floorBackgroundA.floorBackground.pos, floorBackgroundA.floorBackground.size),
 
-        ObstacleBottom2: Obstacle(world, 'ObstacleBottom2', pipeSizePosB.pipeBottom.pos, pipeSizePosB.pipeBottom.size),
+        FloorBackground2: FloorBackground(world, 'FloorBackground2', '../assets/environment/grass.png', false, floorBackgroundB.floorBackground.pos, floorBackgroundB.floorBackground.size),
+
+        Obstacle1: Obstacle(world, 'Obstacle1' , Tree1.obstacle.image, true, Tree1.obstacle.pos, Tree1.obstacle.size),
+
+        Obstacle6: Obstacle(world, 'Obstacle6', Tree2.obstacle.image, true, Tree2.obstacle.pos, Tree2.obstacle.size),
+
+        Obstacle2: Obstacle(world, 'Obstacle2', Tree3.obstacle.image, true, Tree3.obstacle.pos, Tree3.obstacle.size),
+
+        Obstacle8: Obstacle(world, 'Obstacle5', Bush1.obstacle.image, true, Bush1.obstacle.pos, Bush1.obstacle.size),
+
+        Obstacle9: Obstacle(world, 'Obstacle8' , Bush2.obstacle.image, true, Bush2.obstacle.pos, Bush2.obstacle.size),
+
+        Obstacle3: Obstacle(world, 'Obstacle3' , Bush3.obstacle.image, true, Bush3.obstacle.pos, Bush3.obstacle.size),
+
+        Obstacle4: Obstacle(world, 'Obstacle8', Birds1.obstacle.image, true, Birds1.obstacle.pos, Birds1.obstacle.size),
+
+        Obstacle5: Obstacle(world, 'Obstacle9', Birds2.obstacle.image, true, Birds2.obstacle.pos, Birds2.obstacle.size),
+
+        Obstacle10: Obstacle(world, 'Obstacle10', Birds3.obstacle.image, true, Birds3.obstacle.pos, Birds3.obstacle.size),
+
+        Obstacle7: Obstacle(world, 'Obstacle7', Birds4.obstacle.image, true, Birds4.obstacle.pos, Birds4.obstacle.size),
+        
     }
 }

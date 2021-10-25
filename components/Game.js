@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, Image, ImageBackground, TouchableNativeFeedback } from 'react-native';
 import { GameEngine } from 'react-native-game-engine'
 import entities from '../entities'
+import {restart} from '../entities/index'
 import Physics from './Physics'
 import { useState, useEffect } from 'react'
 import Background from './children/Background'
@@ -15,6 +16,8 @@ let sonic = 'sonic'
 let dreamscape = 'dreamscape'
 let jumpSound = 'jumpSound'
 let deathSound = 'deathSound'
+let highScoreSound = 'highScoreSound'
+let slidingSound = 'slidingSound'
 
 
 const Game = ({ navigation }) => {
@@ -46,7 +49,7 @@ const Game = ({ navigation }) => {
          if(songName == 'jumpSound'){
             // console.log('Loading Sound');
              const { sound } = await Audio.Sound.createAsync(
-             require('../jumpSound2.mp3')
+             require('../jumpSound.mp3')
              );
              setSoundEffect(sound);
     
@@ -58,6 +61,28 @@ const Game = ({ navigation }) => {
             // console.log('Loading Sound');
              const { sound } = await Audio.Sound.createAsync(
              require('../deathSound.mp3')
+             );
+             setSoundEffect(sound);
+    
+           //  console.log('Playing Sound');
+             await sound.playAsync();
+         }
+
+         if(songName == 'highScoreSound'){
+            // console.log('Loading Sound');
+             const { sound } = await Audio.Sound.createAsync(
+             require('../highScoreSound.mp3')
+             );
+             setSoundEffect(sound);
+    
+           //  console.log('Playing Sound');
+             await sound.playAsync();
+         }
+
+         if(songName == 'slidingSound'){
+            // console.log('Loading Sound');
+             const { sound } = await Audio.Sound.createAsync(
+             require('../slidingSound3.mp3')
              );
              setSoundEffect(sound);
     
@@ -119,19 +144,13 @@ const Game = ({ navigation }) => {
                             auth.onAuthStateChanged( async (user) => {
                                 if (user) {
                                     await updateHighScore(user.uid, currentScore)
-                                    console.log("mememem")
+                                    playSoundEffect(highScoreSound)
                                  }
                             })
                             messageGameOverHasBeenSent = true;
                             console.log("Game_Over")
                             themeSong.pauseAsync();
                             playSoundEffect(deathSound)
-                            // return themeSong
-                            // ? () => {
-                            //    // playing = false
-                            //     console.log('Unloading Sound');
-                            //     themeSong.unloadAsync(); }
-                            // : undefined;
                         }
                         break;
                     case 'new_score':
@@ -140,6 +159,9 @@ const Game = ({ navigation }) => {
                     case 'Jumped':
                         jumpMessage = true
                         playSoundEffect(jumpSound)
+                        break;
+                    case 'Slided':
+                        playSoundEffect(slidingSound)
                         break;
 
                     }
@@ -252,7 +274,7 @@ const Game = ({ navigation }) => {
             : null }
 
             {running && !playing ? 
-            playThemeSong()
+                playThemeSong()
             : null }          
 
         </View>
