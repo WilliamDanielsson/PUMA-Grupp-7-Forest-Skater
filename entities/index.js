@@ -37,7 +37,7 @@ export default restart => {
 
     let world = engine.world
 
-    world.gravity.y = 1.5;
+    world.gravity.y = 6;
     
     backgroundA = getBackgroundPos()
     backgroundB = getBackgroundPos(windowWidth * 8.02)
