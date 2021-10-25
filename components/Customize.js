@@ -7,6 +7,7 @@ import {getDodgeImage} from './children/ImageDodge'
 import { useSession } from '../contexts/SessionContext'
 
 
+
 const Customize = ( {navigation} ) => {
     //Update image on counter number 
     const [counter, setCounter] = useState(1)
@@ -18,17 +19,24 @@ const Customize = ( {navigation} ) => {
     const {value, value2} = useSession()
     //Access data from the context
     const [skin, setSkin] = value2;
+    const [skinDodge, setSkinDodge] = value;
     
     useEffect(() => {
+        //Update current skin
         setImagePath({
             path: getImage(counter)
         });
         setImageDodgePath({
             path: getDodgeImage(counter)
         });
+        //Update skin in the session
         setSkin ({
             path: getImage(counter)
         })
+        setSkinDodge ({
+            path: getDodgeImage(counter)
+        })
+        
     }, [counter])
 
     const changeUrl = () => {

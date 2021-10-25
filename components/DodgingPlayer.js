@@ -3,7 +3,6 @@ import React, { useEffect } from 'react'
 import { View, Image } from 'react-native'
 import { isRequired } from 'react-native/Libraries/DeprecatedPropTypes/DeprecatedColorPropType'
 import { useSession } from "../contexts/SessionContext";
-import { getDogeImage} from './children/ImageDodge'
 
 const DodgingPlayer = props => {
     
