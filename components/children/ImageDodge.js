@@ -1,9 +1,9 @@
 export function getDodgeImage (counter) {{
     switch (counter) {
-        case 1: return require(`../../assets/skins/dude/dude1.png`)
-        case 2: return require(`../../assets/skins/dude/dude2.png`)
-        case 3: return require(`../../assets/skins/dude/dude3.png`)
-        case 4: return require(`../../assets/skins/dude/dude4.png`)
+        case 1: return require(`../../assets/skins/dude/DodgingDude1.png`)
+        case 2: return require(`../../assets/skins/dude/DodgingDude2.png`)
+        case 3: return require(`../../assets/skins/dude/DodgingDude3.png`)
+        case 4: return require(`../../assets/skins/dude/DodgingDude4.png`)
     }
 
 }}

@@ -3,8 +3,9 @@ import React, { useEffect } from 'react'
 import { View, Image } from 'react-native'
 import { isRequired } from 'react-native/Libraries/DeprecatedPropTypes/DeprecatedColorPropType'
 import { useSession } from "../contexts/SessionContext";
+import { getDogeImage} from './children/ImageDodge'
 
-const Player = props => {
+const DodgingPlayer = props => {
     
     const widthBody = props.body.bounds.max.x - props.body.bounds.min.x
     const heightBody = props.body.bounds.max.y - props.body.bounds.min.y
@@ -12,14 +13,13 @@ const Player = props => {
     const xBody = props.body.position.x - widthBody / 2
     const yBody = props.body.position.y - heightBody / 2
 
+    const {value, value2} = useSession()
+    const [valueImgD, setValueImgD] = value;
+
+    const skinDodge = valueImgD.path;
+
     const color = props.color;
     const image = props.image;
-    
-    const {value, value2} = useSession()
-    const [valueImg, setValueImg] = value2;
-
-
-    const skin = valueImg.path;
     
     return(
         <>
@@ -32,30 +32,30 @@ const Player = props => {
             width: widthBody,
             height: heightBody
         }}
-        source={skin}
+        source={skinDodge}
         />
         </>
     )
 }
 
-export default (world, image, isObstacle, pos, size) => {
-    const initialPlayer = Matter.Bodies.rectangle(
+export default (world, label, image, isObstacle, pos, size) => {
+    const initialDodgingPlayer = Matter.Bodies.rectangle(
         pos.x,
         pos.y,
         size.width,
         size.height,
-        {label: 'Player',
+        {label,
          isObstacle
         }
     )
     
-    Matter.World.add(world, initialPlayer)
+    Matter.World.add(world, initialDodgingPlayer)
 
     return {
-        body: initialPlayer,
+        body: initialDodgingPlayer,
         //color,
         image,
         pos,
-        renderer: <Player/>
+        renderer: <DodgingPlayer/>
     }
 }

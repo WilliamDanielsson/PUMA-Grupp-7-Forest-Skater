@@ -2,7 +2,7 @@ import Matter from 'matter-js'
 import React from 'react'
 import { View, Image } from 'react-native'
 
-const Background = props => {
+const FloorBackground = props => {
     const widthBody = props.body.bounds.max.x - props.body.bounds.min.x
     const heightBody = props.body.bounds.max.y - props.body.bounds.min.y
 
@@ -21,31 +21,31 @@ const Background = props => {
             width: widthBody,
             height: heightBody
         }}
-        source={require('../assets/environment/bigBackground.png')}
+        source={require('../assets/environment/grass.png')}
         />
     )
 }
 
 export default (world, label, image, isObstacle, pos, size) => {
-    const initialBackground = Matter.Bodies.rectangle(
+    const initialFloorBackground = Matter.Bodies.rectangle(
         pos.x,
         pos.y,
         size.width,
         size.height,
-        { 
-            label,
+        {
+            label, 
             isStatic: true,
             isObstacle
     
         }
     )
     
-    Matter.World.add(world, initialBackground)
+    Matter.World.add(world, initialFloorBackground)
 
     return {
-        body: initialBackground,
+        body: initialFloorBackground,
         image,
         pos,
-        renderer: <Background/>
+        renderer: <FloorBackground/>
     }
 }
