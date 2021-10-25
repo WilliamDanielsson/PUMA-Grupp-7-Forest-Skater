@@ -14,19 +14,20 @@ const Floor = props => {
     const image = props.image;
 
     return(
-        <Image style={{
+        <View style={{
             position: 'absolute',
             left: xBody,
             top: yBody,
             width: widthBody,
-            height: heightBody
+            height: heightBody,
+            //backgroundColor: 'black'
         }}
-        source={require('../assets/environment/new_floor.png')}
+        //source={require('../assets/environment/grass.png')}
         />
     )
 }
 
-export default (world, label, image, pos, size) => {
+export default (world, label, isObstacle, pos, size) => {
     const initialFloor = Matter.Bodies.rectangle(
         pos.x,
         pos.y,
@@ -34,7 +35,8 @@ export default (world, label, image, pos, size) => {
         size.height,
         {
             label, 
-            isStatic: true
+            isStatic: true,
+            isObstacle
     
         }
     )
@@ -43,7 +45,6 @@ export default (world, label, image, pos, size) => {
 
     return {
         body: initialFloor,
-        image,
         pos,
         renderer: <Floor/>
     }

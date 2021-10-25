@@ -85,6 +85,7 @@ export const updateHighScore = async (uid, score) => {
         highscore: score,
       }).then(() => {
         console.log("New Highscore!")
+        
       })
     }
   }
