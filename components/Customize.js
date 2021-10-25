@@ -3,7 +3,9 @@ import {ImageBackground , View, StyleSheet, Image, TouchableNativeFeedback } fro
 import Background from './children/Background' 
 import UpdateSkin from './children/UpdateSkin'
 import {getImage} from './children/ImagesUrl'
+import {getDodgeImage} from './children/ImageDodge'
 import { useSession } from '../contexts/SessionContext'
+
 
 
 const Customize = ( {navigation} ) => {
@@ -12,22 +14,29 @@ const Customize = ( {navigation} ) => {
     //Set default object. Player standing upright
     const [imagePath, setImagePath] = useState({path: getImage(2)})
 
-    const [imageDodgePath, setImageDodgePath] = useState({path: getImage(2)})
+    const [imageDodgePath, setImageDodgePath] = useState({path: getDodgeImage(2)})
     //Call context function
     const {value, value2} = useSession()
     //Access data from the context
     const [skin, setSkin] = value2;
+    const [skinDodge, setSkinDodge] = value;
     
     useEffect(() => {
+        //Update current skin
         setImagePath({
             path: getImage(counter)
         });
         setImageDodgePath({
-            path: getDogeImage(counter)
+            path: getDodgeImage(counter)
         });
+        //Update skin in the session
         setSkin ({
             path: getImage(counter)
         })
+        setSkinDodge ({
+            path: getDodgeImage(counter)
+        })
+        
     }, [counter])
 
     const changeUrl = () => {

@@ -8,7 +8,7 @@ export const useSession = () => {
 }
 
 const SessionProvider = ({ children }) => {
-    const [skinDodge, setSkinDodge] = useState({path: require(`../assets/skins/dude/dude2.png`)});
+    const [skinDodge, setSkinDodge] = useState({path: require(`../assets/skins/dude/DodgingDude2.png`)});
     const [skin, setSkin] = useState({path: require(`../assets/skins/dude/dude2.png`)})
     return (
         <SessionContext.Provider value={{value: [skinDodge, setSkinDodge], value2: [skin, setSkin]}}>
