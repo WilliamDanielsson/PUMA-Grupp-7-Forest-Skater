@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import { View, Image } from 'react-native'
 import { isRequired } from 'react-native/Libraries/DeprecatedPropTypes/DeprecatedColorPropType'
 import { useSession } from "../contexts/SessionContext";
+import { getDogeImage} from './children/ImageDodge'
 
 const DodgingPlayer = props => {
     
@@ -11,6 +12,11 @@ const DodgingPlayer = props => {
 
     const xBody = props.body.position.x - widthBody / 2
     const yBody = props.body.position.y - heightBody / 2
+
+    const {value, value2} = useSession()
+    const [valueImgD, setValueImgD] = value;
+
+    const skinDodge = valueImgD.path;
 
     const color = props.color;
     const image = props.image;
@@ -26,7 +32,7 @@ const DodgingPlayer = props => {
             width: widthBody,
             height: heightBody
         }}
-        source={image}
+        source={skinDodge}
         />
         </>
     )

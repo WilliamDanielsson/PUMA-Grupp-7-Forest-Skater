@@ -57,6 +57,7 @@ const styles = StyleSheet.create({
     left: '45%',
     fontSize: 24,
     color: '#6B4B40',
+    textAlign: 'center'
   },
   text2: {
     position: 'absolute',
@@ -64,5 +65,6 @@ const styles = StyleSheet.create({
     left: '39%',
     fontSize: 24,
     color: '#6B4B40',
+    textAlign: "center"
   },
 })

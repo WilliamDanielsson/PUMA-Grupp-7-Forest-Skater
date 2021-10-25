@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react'
+import { ScreenStack } from 'react-native-screens';
 
 const SessionContext = React.createContext();
 
@@ -7,10 +8,10 @@ export const useSession = () => {
 }
 
 const SessionProvider = ({ children }) => {
-    const [volume, setVolume] = useState(0);
+    const [skinDodge, setSkinDodge] = useState({path: require(`../assets/skins/dude/dude2.png`)});
     const [skin, setSkin] = useState({path: require(`../assets/skins/dude/dude2.png`)})
     return (
-        <SessionContext.Provider value={{value: [volume, setVolume], value2: [skin, setSkin]}}>
+        <SessionContext.Provider value={{value: [skinDodge, setSkinDodge], value2: [skin, setSkin]}}>
             {children}
         </SessionContext.Provider>
     )
