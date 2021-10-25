@@ -3,26 +3,53 @@ import { Image, Text, StyleSheet, View } from 'react-native'
 
 const HighscoreListItem = ({ rating, name, highscore }) => {
     return (
+        <View style={styles.paddingContainer}>
         <View style={styles.container}>
             <Image source={require('../../assets/leaderboardListItem.png')} style={styles.image}/>
-            <Text>{rating}</Text>
-            <Text>{name}</Text>
-            <Text>{highscore}</Text>
+            <View style={styles.innerContainer}>
+                <Text style={styles.rating} >{rating}.</Text>
+                <Text style={styles.name} >{name}</Text>
+                <Text style={styles.score} >{highscore}</Text>
+            </View>
+        </View>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    image: {
-      position: 'absolute'
+    paddingContainer: {
     },
     container: {
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 20,
-    }
+        padding: 15,
+        height: 25,
+        width: 200,
+    },
+    image: {
+        position: 'absolute',
+    },
+    innerContainer: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
+    rating: {
+        color: '#795548',
+        fontSize: 12,
+    },
+    name: {
+        color: '#795548',
+        fontSize: 12,
+
+    },
+    score: {
+        color: '#795548',
+        fontSize: 12,
+    },
 });
 
 export default HighscoreListItem
