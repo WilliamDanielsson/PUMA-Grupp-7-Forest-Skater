@@ -30,7 +30,7 @@ let floorBackgroundB  = undefined
 
 let dodgingPlayerImage = undefined
 
-
+let haveRunnedOnce = true
 export default restart => {
    
     let engine = Matter.Engine.create({enableSleeping: false})
@@ -39,28 +39,32 @@ export default restart => {
 
     world.gravity.y = 6;
     
-    backgroundA = getBackgroundPos()
-    backgroundB = getBackgroundPos(windowWidth * 8.02)
-
-    Tree1 = getTreeStatsFirstWave()
-    Tree2 = getTreeStatsSecondWave()
-    Tree3 = getTreeStatsFirstWave()
-    Bush1 = getBushStatsSecondWave()
-    Bush2 = getBushStatsSecondWave()
-    Bush3 = getBushStatsFirstWave()
-    Birds1 = getLowBirdsStatsFirstWave()
-    Birds2 = getHighBirdsStatsFirstWave()
-    Birds3 = getLowBirdsStatsSecondWave()
-    Birds4 = getHighBirdsStatsSecondWave()
-
-    floor = getFloorPos()
-
-    floorBackgroundA = getFloorBackgroundPos()
-    floorBackgroundB = getFloorBackgroundPos(windowWidth * 0.99)
-
-    dodgingPlayerImage = getImage(8)
-
-    resetLists()
+    if(haveRunnedOnce){
+        haveRunnedOnce = false
+        console.log("yeet")
+        backgroundA = getBackgroundPos()
+        backgroundB = getBackgroundPos(windowWidth * 8.02)
+    
+        Tree1 = getTreeStatsFirstWave()
+        Tree2 = getTreeStatsSecondWave()
+        Tree3 = getTreeStatsFirstWave()
+        Bush1 = getBushStatsSecondWave()
+        Bush2 = getBushStatsSecondWave()
+        Bush3 = getBushStatsFirstWave()
+        Birds1 = getLowBirdsStatsFirstWave()
+        Birds2 = getHighBirdsStatsFirstWave()
+        Birds3 = getLowBirdsStatsSecondWave()
+        Birds4 = getHighBirdsStatsSecondWave()
+    
+        floor = getFloorPos()
+    
+        floorBackgroundA = getFloorBackgroundPos()
+        floorBackgroundB = getFloorBackgroundPos(windowWidth * 0.99)
+    
+        dodgingPlayerImage = getImage(8)
+    
+        resetLists() 
+    }
         
     return {
         physics: {engine, world},

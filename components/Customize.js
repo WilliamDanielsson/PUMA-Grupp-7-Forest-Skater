@@ -3,6 +3,7 @@ import {ImageBackground , View, StyleSheet, Image, TouchableNativeFeedback } fro
 import Background from './children/Background' 
 import UpdateSkin from './children/UpdateSkin'
 import {getImage} from './children/ImagesUrl'
+import {getDodgeImage} from './children/ImageDodge'
 import { useSession } from '../contexts/SessionContext'
 
 
@@ -12,7 +13,7 @@ const Customize = ( {navigation} ) => {
     //Set default object. Player standing upright
     const [imagePath, setImagePath] = useState({path: getImage(2)})
 
-    const [imageDodgePath, setImageDodgePath] = useState({path: getImage(2)})
+    const [imageDodgePath, setImageDodgePath] = useState({path: getDodgeImage(2)})
     //Call context function
     const {value, value2} = useSession()
     //Access data from the context
@@ -23,7 +24,7 @@ const Customize = ( {navigation} ) => {
             path: getImage(counter)
         });
         setImageDodgePath({
-            path: getDogeImage(counter)
+            path: getDodgeImage(counter)
         });
         setSkin ({
             path: getImage(counter)
