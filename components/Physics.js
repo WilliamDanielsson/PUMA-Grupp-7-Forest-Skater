@@ -116,11 +116,11 @@ const Physics = (entities, {touches, time, dispatch}) => {
    // console.log(time)
     Matter.Engine.update(engine, 16.666)
 
-    //  ticks++
-    //  if(ticks == chunk){
-    //      dispatch({type: 'new_score'}) 
-    //      chunk = 15 + ticks
-    //  }
+      ticks++
+      if(ticks == chunk){
+          dispatch({type: 'new_score'}) 
+          chunk = 15 + ticks
+      }
    
     for (let index = 1; index <= 2; index++) {
 
@@ -144,17 +144,17 @@ const Physics = (entities, {touches, time, dispatch}) => {
 
     let firstWaveBiggest = 0
     let secondWaveBiggest = 0
-    for (let index = 1; index <= 10; index++) {
+    for (let index = 1; index <= 4; index++) {
          if(entities[`Obstacle${index}`].body.bounds.max.x <= 50 && entities[`Obstacle${index}`].body.bounds.max.x > 45){
              entities[`Obstacle${index}`].score = true
              //dispatch({type: 'new_score'})
          }
 
-         if(entities[`Obstacle${index}`].body.bounds.max.x >= firstWaveBiggest && index < 6){
+         if(entities[`Obstacle${index}`].body.bounds.max.x >= firstWaveBiggest && index < 3){
              firstWaveBiggest = entities[`Obstacle${index}`].body.bounds.max.x
          }
 
-         if(entities[`Obstacle${index}`].body.bounds.max.x >= secondWaveBiggest && index > 5){
+         if(entities[`Obstacle${index}`].body.bounds.max.x >= secondWaveBiggest && index > 2){
             secondWaveBiggest = entities[`Obstacle${index}`].body.bounds.max.x
         }
 
@@ -165,7 +165,7 @@ const Physics = (entities, {touches, time, dispatch}) => {
     //console.log(secondWaveBiggest)
 
     if(firstWaveBiggest <= 0){
-        for (let index = 1; index <= 5; index++) {
+        for (let index = 1; index <= 2; index++) {
            Matter.Body.setPosition(entities[`Obstacle${index}`].body, {x: windowWidth * (getRandomIndexFromSecondList() * 0.7 ), y: entities[`Obstacle${index}`].body.position.y})
         }
 
@@ -173,7 +173,7 @@ const Physics = (entities, {touches, time, dispatch}) => {
     }
 
     if(secondWaveBiggest <= 0){
-        for (let index = 6; index <= 10; index++) {
+        for (let index = 3; index <= 4; index++) {
            Matter.Body.setPosition(entities[`Obstacle${index}`].body, {x: windowWidth * (getRandomIndexFromSecondList() * 0.7), y: entities[`Obstacle${index}`].body.position.y})
         }
 

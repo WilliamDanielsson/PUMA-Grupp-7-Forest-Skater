@@ -6,39 +6,35 @@ const windowWidth = Dimensions.get('window').width
 
 //const interval = 0.9
 
-let firstPositionList = [1,2,3,4,5]
-let secondPositionList = [6,7,8,9,10]
+let firstPositionList = [1,2]
+let secondPositionList = [3,4]
 
 
 export const resetLists = () => {
-    firstPositionList = [1,2,3,4,5]
-    secondPositionList = [6,7,8,9,10]
+    firstPositionList = [1,2]
+    secondPositionList = [3,4]
 }
 
 function getPositionFromList (index) {
     let position = windowWidth + windowWidth * (index * 0.7)
     return position
-
+//0.7
 }
 
-
-
-export let getRandomIndexFromFirstList = (min = 1, max = 5) => {
+export let getRandomIndexFromFirstList = (min = 1, max = 2) => {
     let position = Math.floor(Math.random() * (max - min + 1) + min)
       while(firstPositionList.find(element => element == position) == undefined){
           position = Math.floor(Math.random() * (max - min + 1) + min)
-        
      }
 
     firstPositionList[firstPositionList.indexOf(position)] = null
     return position
 }
 
-export let getRandomIndexFromSecondList = (min = 6, max = 10) => {
+export let getRandomIndexFromSecondList = (min = 3, max = 4) => {
     let position = Math.floor(Math.random() * (max - min + 1) + min)
     while(secondPositionList.find(element => element == position) == undefined){
         position = Math.floor(Math.random() * (max - min + 1) + min)
-
     }
     secondPositionList[secondPositionList.indexOf(position)] = null
     return position
@@ -76,7 +72,7 @@ export const getLowBirdsStatsFirstWave = (addToPosX = 0) => {
 
     let xPos = getPositionFromList(getRandomIndexFromFirstList())
 
-    const obstacle = { image: birdsImage, pos: { x: xPos, y: windowHeight - 155}, size: {height: 115, width: 100} }
+    const obstacle = { image: birdsImage, pos: { x: xPos, y: windowHeight - 155}, size: {height: 115, width: 110} }
     return {obstacle}
 }
 
@@ -86,7 +82,7 @@ export const getHighBirdsStatsFirstWave = (addToPosX = 0) => {
 
     let xPos = getPositionFromList(getRandomIndexFromFirstList())
 
-    const obstacle = { image: birdsImage, pos: { x: xPos, y: windowHeight - 210}, size: {height: 115, width: 100} }
+    const obstacle = { image: birdsImage, pos: { x: xPos, y: windowHeight - 210}, size: {height: 115, width: 110} }
     return {obstacle}
 }
 
@@ -116,7 +112,7 @@ export const getLowBirdsStatsSecondWave = (addToPosX = 0) => {
 
     let xPos = getPositionFromList(getRandomIndexFromSecondList())
 
-    const obstacle = { image: birdsImage, pos: { x: xPos, y: windowHeight - 155}, size: {height: 115, width: 100} }
+    const obstacle = { image: birdsImage, pos: { x: xPos, y: windowHeight - 155}, size: {height: 115, width: 110} }
     return {obstacle}
 }
 
@@ -126,7 +122,7 @@ export const getHighBirdsStatsSecondWave = (addToPosX = 0) => {
 
     let xPos = getPositionFromList(getRandomIndexFromSecondList())
 
-    const obstacle = { image: birdsImage, pos: { x: xPos, y: windowHeight - 210}, size: {height: 115, width: 100} }
+    const obstacle = { image: birdsImage, pos: { x: xPos, y: windowHeight - 210}, size: {height: 115, width: 110} }
     return {obstacle}
 }
 

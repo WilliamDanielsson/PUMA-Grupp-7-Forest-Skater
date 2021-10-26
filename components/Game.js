@@ -145,7 +145,7 @@ const Game = ({ navigation }) => {
                             auth.onAuthStateChanged( async (user) => {
                                 if (user) {
                                     await updateHighScore(user.uid, currentScore)
-                                    playSoundEffect(highScoreSound)
+                                    //playSoundEffect(highScoreSound)
                                  }
                             })
                             messageGameOverHasBeenSent = true;

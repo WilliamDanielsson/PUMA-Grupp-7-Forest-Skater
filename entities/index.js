@@ -28,6 +28,11 @@ let floor = undefined
 let floorBackgroundA = undefined
 let floorBackgroundB  = undefined
 
+let lessLaggyTree = undefined
+let lessLaggyBush = undefined
+let lessLaggyLowBird = undefined
+let lessLaggyHighBird = undefined
+
 let dodgingPlayerImage = undefined
 
 let haveRunnedOnce = true
@@ -40,21 +45,26 @@ export default restart => {
     world.gravity.y = 6;
     
     if(haveRunnedOnce){
-        haveRunnedOnce = false
+        //haveRunnedOnce = false
         console.log("yeet")
         backgroundA = getBackgroundPos()
         backgroundB = getBackgroundPos(windowWidth * 8.02)
     
-        Tree1 = getTreeStatsFirstWave()
-        Tree2 = getTreeStatsSecondWave()
-        Tree3 = getTreeStatsFirstWave()
-        Bush1 = getBushStatsSecondWave()
-        Bush2 = getBushStatsSecondWave()
-        Bush3 = getBushStatsFirstWave()
-        Birds1 = getLowBirdsStatsFirstWave()
-        Birds2 = getHighBirdsStatsFirstWave()
-        Birds3 = getLowBirdsStatsSecondWave()
-        Birds4 = getHighBirdsStatsSecondWave()
+        // Tree1 = getTreeStatsFirstWave()
+        // Tree2 = getTreeStatsSecondWave()
+        // Tree3 = getTreeStatsFirstWave()
+        // Bush1 = getBushStatsSecondWave()
+        // Bush2 = getBushStatsSecondWave()
+        // Bush3 = getBushStatsFirstWave()
+        // Birds1 = getLowBirdsStatsFirstWave()
+        // Birds2 = getHighBirdsStatsFirstWave()
+        // Birds3 = getLowBirdsStatsSecondWave()
+        // Birds4 = getHighBirdsStatsSecondWave()
+
+        lessLaggyTree = getTreeStatsFirstWave()
+        lessLaggyBush = getBushStatsSecondWave()
+        lessLaggyLowBird = getLowBirdsStatsFirstWave()
+        lessLaggyHighBird = getHighBirdsStatsSecondWave()
     
         floor = getFloorPos()
     
@@ -85,25 +95,33 @@ export default restart => {
 
         FloorBackground2: FloorBackground(world, 'FloorBackground2', '../assets/environment/grass.png', false, floorBackgroundB.floorBackground.pos, floorBackgroundB.floorBackground.size),
 
-        Obstacle1: Obstacle(world, 'Obstacle1' , Tree1.obstacle.image, true, Tree1.obstacle.pos, Tree1.obstacle.size),
+        // Obstacle1: Obstacle(world, 'Obstacle1' , Tree1.obstacle.image, true, Tree1.obstacle.pos, Tree1.obstacle.size),
 
-        Obstacle6: Obstacle(world, 'Obstacle6', Tree2.obstacle.image, true, Tree2.obstacle.pos, Tree2.obstacle.size),
+        // Obstacle6: Obstacle(world, 'Obstacle6', Tree2.obstacle.image, true, Tree2.obstacle.pos, Tree2.obstacle.size),
 
-        Obstacle2: Obstacle(world, 'Obstacle2', Tree3.obstacle.image, true, Tree3.obstacle.pos, Tree3.obstacle.size),
+        // Obstacle2: Obstacle(world, 'Obstacle2', Tree3.obstacle.image, true, Tree3.obstacle.pos, Tree3.obstacle.size),
 
-        Obstacle8: Obstacle(world, 'Obstacle5', Bush1.obstacle.image, true, Bush1.obstacle.pos, Bush1.obstacle.size),
+        // Obstacle8: Obstacle(world, 'Obstacle5', Bush1.obstacle.image, true, Bush1.obstacle.pos, Bush1.obstacle.size),
 
-        Obstacle9: Obstacle(world, 'Obstacle8' , Bush2.obstacle.image, true, Bush2.obstacle.pos, Bush2.obstacle.size),
+        // Obstacle9: Obstacle(world, 'Obstacle8' , Bush2.obstacle.image, true, Bush2.obstacle.pos, Bush2.obstacle.size),
 
-        Obstacle3: Obstacle(world, 'Obstacle3' , Bush3.obstacle.image, true, Bush3.obstacle.pos, Bush3.obstacle.size),
+        // Obstacle3: Obstacle(world, 'Obstacle3' , Bush3.obstacle.image, true, Bush3.obstacle.pos, Bush3.obstacle.size),
 
-        Obstacle4: Obstacle(world, 'Obstacle8', Birds1.obstacle.image, true, Birds1.obstacle.pos, Birds1.obstacle.size),
+        // Obstacle4: Obstacle(world, 'Obstacle8', Birds1.obstacle.image, true, Birds1.obstacle.pos, Birds1.obstacle.size),
 
-        Obstacle5: Obstacle(world, 'Obstacle9', Birds2.obstacle.image, true, Birds2.obstacle.pos, Birds2.obstacle.size),
+        // Obstacle5: Obstacle(world, 'Obstacle9', Birds2.obstacle.image, true, Birds2.obstacle.pos, Birds2.obstacle.size),
 
-        Obstacle10: Obstacle(world, 'Obstacle10', Birds3.obstacle.image, true, Birds3.obstacle.pos, Birds3.obstacle.size),
+        // Obstacle10: Obstacle(world, 'Obstacle10', Birds3.obstacle.image, true, Birds3.obstacle.pos, Birds3.obstacle.size),
 
-        Obstacle7: Obstacle(world, 'Obstacle7', Birds4.obstacle.image, true, Birds4.obstacle.pos, Birds4.obstacle.size),
+        // Obstacle7: Obstacle(world, 'Obstacle7', Birds4.obstacle.image, true, Birds4.obstacle.pos, Birds4.obstacle.size),
+
+        Obstacle1: Obstacle(world, 'Obstacle1' , lessLaggyTree.obstacle.image, true, lessLaggyTree.obstacle.pos, lessLaggyTree.obstacle.size),
+
+        Obstacle3: Obstacle(world, 'Obstacle3' , lessLaggyBush.obstacle.image, true, lessLaggyBush.obstacle.pos, lessLaggyBush.obstacle.size),
+
+        Obstacle2: Obstacle(world, 'Obstacle2' , lessLaggyLowBird.obstacle.image, true, lessLaggyLowBird.obstacle.pos, lessLaggyLowBird.obstacle.size),
+
+        Obstacle4: Obstacle(world, 'Obstacle4' , lessLaggyHighBird.obstacle.image, true, lessLaggyHighBird.obstacle.pos, lessLaggyHighBird.obstacle.size),
         
     }
 }
