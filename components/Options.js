@@ -7,8 +7,8 @@ const Options = ({navigation}) => {
     return (
         <>
         <Background/>
-        <View>
-                <ImageBackground style={styles.container} source={require('../assets/options.png')}>
+        <View style={styles.container}>
+                <ImageBackground style={styles.options} resizeMode="cover" source={require('../assets/options1.png')}>
                 <TouchableNativeFeedback onPress={() => {navigation.navigate("home")}} background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
                     <Image style={styles.returnButton}  source={require('../assets/skins/buttons/x.png')}/>
                 </TouchableNativeFeedback> 
@@ -20,12 +20,14 @@ const Options = ({navigation}) => {
 
 const styles = StyleSheet.create({
     container: {
-        position: 'absolute',      
+        flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+
+    },
+    options: {
         width: 330,
         height: 330,
-        right: 170,
-        marginTop: 30,
-
     },
     returnButton: {
         position: 'absolute',

@@ -68,7 +68,7 @@ const Customize = ( {navigation} ) => {
                 </TouchableNativeFeedback>
                 </ImageBackground>  
                 <TouchableNativeFeedback onPress={() => {navigation.navigate("game")}} background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
-                    <Image style={[styles.gameButton, {paddingTop: 10}]} source={require('../assets/skins/buttons/play2.png')}/>
+                    <Image style={[styles.gameButton, {paddingTop: 10}]} source={require('../assets/skins/buttons/play3.png')}/>
                 </TouchableNativeFeedback>
 
             </View>
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
         position: 'absolute',      
         width: 330,
         height: 330,
-        right: '25%',
+        left: '27%',
         marginTop: 10,
 
     },
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
         width: 300,
         height: 50,
         marginTop: 340,
-        right: '26%',
+        left: '30%',
     },
     returnButton: {
         position: 'absolute',
