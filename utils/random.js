@@ -16,7 +16,7 @@ export const resetLists = () => {
 }
 
 function getPositionFromList (index) {
-    let position = windowWidth + windowWidth * (index * 0.7)
+    let position = windowWidth + windowWidth * (index * 0.6)
     return position
 //0.7
 }
@@ -82,7 +82,7 @@ export const getHighBirdsStatsFirstWave = (addToPosX = 0) => {
 
     let xPos = getPositionFromList(getRandomIndexFromFirstList())
 
-    const obstacle = { image: birdsImage, pos: { x: xPos, y: windowHeight - 210}, size: {height: 115, width: 110} }
+    const obstacle = { image: birdsImage, pos: { x: xPos, y: windowHeight - 215}, size: {height: 115, width: 110} }
     return {obstacle}
 }
 
@@ -122,7 +122,7 @@ export const getHighBirdsStatsSecondWave = (addToPosX = 0) => {
 
     let xPos = getPositionFromList(getRandomIndexFromSecondList())
 
-    const obstacle = { image: birdsImage, pos: { x: xPos, y: windowHeight - 210}, size: {height: 115, width: 110} }
+    const obstacle = { image: birdsImage, pos: { x: xPos, y: windowHeight - 215}, size: {height: 115, width: 110} }
     return {obstacle}
 }
 

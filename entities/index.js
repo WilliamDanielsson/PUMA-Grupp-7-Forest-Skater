@@ -42,11 +42,11 @@ export default restart => {
 
     let world = engine.world
 
-    world.gravity.y = 6;
+    //world.gravity.y = 2;
+    //6
     
     if(haveRunnedOnce){
         //haveRunnedOnce = false
-        console.log("yeet")
         backgroundA = getBackgroundPos()
         backgroundB = getBackgroundPos(windowWidth * 8.02)
     

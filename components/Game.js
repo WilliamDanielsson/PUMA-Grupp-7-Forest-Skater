@@ -4,6 +4,7 @@ import { GameEngine } from 'react-native-game-engine'
 import entities from '../entities'
 import {restart} from '../entities/index'
 import Physics from './Physics'
+import {resetValues} from './Physics'
 import { useState, useEffect } from 'react'
 import Background from './children/Background'
 import { Audio } from 'expo-av'
@@ -12,6 +13,7 @@ import { updateHighScore, auth } from '../firebase';
 let message = 'null'
 let playing = false
 let jumpMessage = false
+let newHighScore = undefined
 let sonic = 'sonic'
 let dreamscape = 'dreamscape'
 let jumpSound = 'jumpSound'
@@ -30,97 +32,86 @@ const Game = ({ navigation }) => {
 
     useEffect(() => {
         setRunning(true)
+        resetValues()
+        message = 'null'
+        playing = false
+        setSoundEffect()
+        setThemeSong()
     }, [])
 
-    
      async function playSoundEffect(songName) {
         
          if(songName == 'dreamscape'){
-            // console.log('Loading Sound');
              const { sound } = await Audio.Sound.createAsync(
              require('../Dreamscape.mp3')
              );
              setSoundEffect(sound);
-    
-            // console.log('Playing Sound');
+
              await sound.playAsync();
          }
 
          if(songName == 'jumpSound'){
-            // console.log('Loading Sound');
              const { sound } = await Audio.Sound.createAsync(
              require('../jumpSound.mp3')
              );
              setSoundEffect(sound);
-    
-           //  console.log('Playing Sound');
+
              await sound.playAsync();
          }
 
          if(songName == 'deathSound'){
-            // console.log('Loading Sound');
              const { sound } = await Audio.Sound.createAsync(
              require('../deathSound.mp3')
              );
              setSoundEffect(sound);
     
-           //  console.log('Playing Sound');
              await sound.playAsync();
          }
 
          if(songName == 'highScoreSound'){
-            // console.log('Loading Sound');
              const { sound } = await Audio.Sound.createAsync(
              require('../highScoreSound.mp3')
              );
              setSoundEffect(sound);
     
-           //  console.log('Playing Sound');
              await sound.playAsync();
          }
 
          if(songName == 'slidingSound'){
-            // console.log('Loading Sound');
              const { sound } = await Audio.Sound.createAsync(
-             require('../slidingSound3.mp3')
+             require('../slidingSound.mp3')
              );
              setSoundEffect(sound);
     
-           //  console.log('Playing Sound');
              await sound.playAsync();
          }
      }
 
-         React.useEffect(() => {
-             return soundEffect
-               ? () => {
-                  // console.log('Unloading Sound');
+          React.useEffect(() => {
+              return soundEffect
+                ? () => {
                    soundEffect.unloadAsync(); }
-               : soundEffect;
-           }, [soundEffect]);
+                : undefined;
+            }, [soundEffect]);
 
 
           async function playThemeSong() {
             playing = true
-            console.log('Loading Sound');
             const { sound } = await Audio.Sound.createAsync(
-               require('../gottaGoFast.mp3')
+               require('../themeSong.mp3')
             );
             setThemeSong(sound);
-        
-            console.log('Playing Sound');
+    
             await sound.playAsync(); }
         
-           React.useEffect(() => {
-             return themeSong
-               ? () => {
-                   playing = false
-                   console.log('Unloading Sound');
-                   playing = false
-                   themeSong.unloadAsync(); }
-               : undefined;
-           }, [themeSong]);
-    
+            React.useEffect(() => {
+              return themeSong
+                ? () => {
+                    playing = false
+                    themeSong.unloadAsync(); }
+                : undefined;
+            }, [themeSong]);
+
     return (
         <>
         <Background/>
@@ -139,13 +130,13 @@ const Game = ({ navigation }) => {
                     switch(e.type){
                     case 'game_over':
                         message = 'GameOver'
+                        resetValues()
                         setRunning(false)
                         gameEngine.stop()
                         if(!messageGameOverHasBeenSent){
                             auth.onAuthStateChanged( async (user) => {
-                                if (user) {
-                                    await updateHighScore(user.uid, currentScore)
-                                    //playSoundEffect(highScoreSound)
+                                if (user) {      
+                                    await updateHighScore(user.uid, currentScore)      
                                  }
                             })
                             messageGameOverHasBeenSent = true;
@@ -254,6 +245,7 @@ const Game = ({ navigation }) => {
                         onPress={() => {
                             navigation.navigate("home")
                             message = 'null'
+                            resetValues()
                         }}
                         >
                     

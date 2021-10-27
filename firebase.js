@@ -1,6 +1,5 @@
 // Import the functions you need from the SDKs you need
 import * as firebase from "firebase";
-import { Audio } from 'expo-av'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -76,42 +75,22 @@ export const createUserDocument = async (uid, email) => {
     }
 }
 
-export const updateHighScore = async (uid, score) => {
-  //const [soundEffect, setSoundEffect] = React.useState()
+export let updateHighScore = async (uid, score) => {
 
   const userRef = db.doc(`users/${uid}`)
   const snapshot = await userRef.get()
-
-  // async function playSoundEffect() {
-  //   playing = true
-  //   console.log('Loading Sound');
-  //   const { sound } = await Audio.Sound.createAsync(
-  //      require('./highScoreSound.mp3')
-  //   );
-  //   setSoundEffect(sound);
-
-  //   console.log('Playing Sound');
-  //   await sound.playAsync(); }
-
-  //  React.useEffect(() => {
-  //    return soundEffect
-  //      ? () => {
-  //          console.log('Unloading Sound');
-  //          soundEffect.unloadAsync(); }
-  //      : undefined;
-  //  }, [soundEffect]);
-
+  
+  
   if (snapshot.exists) {
     if (snapshot.data().highscore < score) {
       userRef.update({
         highscore: score,
       }).then(() => {
-
         console.log("New Highscore!")
-       // playSoundEffect()
       })
     }
   }
+  
 }
 
 export { auth };

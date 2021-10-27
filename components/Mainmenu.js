@@ -1,15 +1,41 @@
 import React from 'react'
 import { View, Image, StyleSheet, TouchableNativeFeedback } from 'react-native'
 import Background from './children/Background'
+import { Audio } from 'expo-av'
+import { playThemeSong, stopThemeSong} from "../title2Theme"
+import { useState, useEffect } from 'react'
 
-const Mainmenu = ({ navigation }) => {
+let havePlayed = false
+let sound
+const Mainmenu = ({ navigation }) => { 
+    const [themeSong, setThemeSong] = React.useState()
+
+    async function playThemeSong() {
+        const { sound } = await Audio.Sound.createAsync(
+           require('../titleTheme.mp3')
+        );
+        setThemeSong(sound);
+
+        await sound.playAsync(); }
     
+        React.useEffect(() => {
+          return themeSong
+            ? () => {
+                themeSong.unloadAsync(); 
+                playThemeSong()
+            }
+            : undefined;
+        }, [themeSong]);
+
+    useEffect(() => {
+        playThemeSong()
+    }, [])
     return (
         <>
             <Background/>
             <View style={styles.container}>
                 
-                <TouchableNativeFeedback onPress={() => {navigation.navigate("game")}} background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
+                <TouchableNativeFeedback onPress={() => {navigation.navigate("game"), themeSong.unloadAsync()}} background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
                     <Image source={require('../assets/play.png')}/>
                 </TouchableNativeFeedback>
                 <TouchableNativeFeedback onPress={() => {navigation.navigate("login")}} background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
