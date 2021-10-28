@@ -52,8 +52,9 @@ export const resetValues = () => {
     ticks = 0
     chunk = 15
     difficultLimit = 5
-    swipingLimit = 0
+    swipingLimit = 20
     move = 0
+    ticksWhileDodging = 0
 }
 const Physics = (entities, {touches, time, dispatch}) => {
         let engine = entities.physics.engine

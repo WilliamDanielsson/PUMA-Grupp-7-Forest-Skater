@@ -34,7 +34,7 @@ const Mainmenu = ({ navigation }) => {
         <>
             <Background/>
             <View style={styles.container}>
-                
+                <Image style={{position: 'absolute', top: '-17.5%'}} source={require('../assets/ForestSkater.png')}/>
                 <TouchableNativeFeedback onPress={() => {navigation.navigate("game"), themeSong.unloadAsync()}} background={Platform.OS === 'android' ? TouchableNativeFeedback.SelectableBackground() : ''}>
                     <Image source={require('../assets/play.png')}/>
                 </TouchableNativeFeedback>
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
-      marginTop: 20,
+      marginTop: '10%',
     },
     innerContainer: {
       flexDirection: "row",
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     },
     profile: {
         position: 'absolute',
-        top: '0%',
+        top: '-12.5%',
         left: '88%',
     }
   });

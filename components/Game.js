@@ -117,8 +117,8 @@ const Game = ({ navigation }) => {
         <Background/>
         <View style={{flex: 1}}>
 
-            <ImageBackground style={{position: 'absolute', right: 10, width: 100, height: 50, top: -15}} source={require('../assets/currentScore.png')}>
-                <Text style={{textAlign: 'center', fontSize: 20, fontWeight: 'bold', color: '#795548', marginTop: 20}}>{currentScore}</Text>
+            <ImageBackground style={{position: 'absolute', right: '3%', width: 100, height: 50, top: '-3.6%'}} source={require('../assets/currentScore.png')}>
+                <Text style={{textAlign: 'center', fontSize: 20, fontWeight: 'bold', color: '#795548', marginTop: '20%'}}>{currentScore}</Text>
             </ImageBackground>
 
             <GameEngine
@@ -161,9 +161,9 @@ const Game = ({ navigation }) => {
                 }}
                 style={{position: 'absolute', top: 0, left: 0, right: 0, bottom: 0}}
             >
-                <ImageBackground style={{position: 'absolute', top: 15, left: 15, width: 50, height: 100}}>
+                <ImageBackground style={{position: 'absolute', top: '4%', left: '3%', width: 50, height: 100}}>
                     <Image source={require('../assets/pauseButton.png')}/>
-                    <TouchableOpacity style={{width: 40, height: 40, marginTop: -40}}
+                    <TouchableOpacity style={{width: 40, height: 40, marginTop: '-80%'}}
                         onPress={() => {
                         message = 'Pause'
                         themeSong.pauseAsync();
@@ -173,7 +173,7 @@ const Game = ({ navigation }) => {
                     </TouchableOpacity>
 
                     {message == 'Pause' ?
-                        <TouchableOpacity style={{width: 40, height: 40, marginTop: -40}}
+                        <TouchableOpacity style={{width: 40, height: 40, marginTop: '-80%'}}
                             onPress={() => {
                             setRunning(true)
                             message = 'null'
@@ -186,13 +186,13 @@ const Game = ({ navigation }) => {
             </GameEngine> 
 
             {message == 'GameOver' ?
-                <ImageBackground style={{position: 'absolute', top: 65, left: 190, width: 500, height: 500}}>
+                <ImageBackground style={{position: 'absolute', top: '15%', left: '27%', width: 500, height: 500}}>
 
                     <Image source={require('../assets/popUpMenuTemplate.png')}/>
 
-                    <Text style={{position: 'absolute', left: 75, top: 30, fontSize: 40, color: '#795548'}}> Score: {currentScore} </Text>
+                    <Text style={{position: 'absolute', left: '14.5%', top: '6.5%', fontSize: 40, color: '#795548'}}> Score: {currentScore} </Text>
 
-                    <TouchableOpacity style={{width: 161, height: 51, marginLeft: 75, marginTop: -225}}
+                    <TouchableOpacity style={{width: 161, height: 51, marginLeft: '15%', marginTop: '-43.5%'}}
                     onPress={() => {
                         navigation.navigate("leaderboard")
                         message = 'null'
@@ -201,7 +201,7 @@ const Game = ({ navigation }) => {
                         <Image source={require('../assets/leaderboardButton.png')}/> 
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={{width: 161, height: 51, marginLeft: 75, marginTop: 5}}
+                    <TouchableOpacity style={{width: 161, height: 51, marginLeft: '15%', marginTop: '0.75%'}}
                     onPress={() => {
                         navigation.navigate("home")
                         message = 'null'
@@ -210,7 +210,7 @@ const Game = ({ navigation }) => {
                         <Image source={require('../assets/quitButton.png')}/> 
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={{width: 173, height: 55, marginLeft: 70, marginTop: 5}}
+                    <TouchableOpacity style={{width: 173, height: 55, marginLeft: '13.7%', marginTop: '0.75%'}}
                     onPress={() => {
                         //playing = false
                         themeSong.replayAsync();
@@ -227,11 +227,11 @@ const Game = ({ navigation }) => {
             : null } 
 
             {message == 'Pause' ?
-                <ImageBackground style={{position: 'absolute', top: 65, left: 190, width: 500, height: 500}}>
+                <ImageBackground style={{position: 'absolute', top: '15%', left: '27%', width: 500, height: 500}}>
 
                     <Image source={require('../assets/pauseMenu.png')}/>
 
-                    <TouchableOpacity style={{width: 161, height: 51, marginLeft: 75, marginTop: -225}}
+                    <TouchableOpacity style={{width: 161, height: 51, marginLeft: '15%', marginTop: '-43.5%'}}
                         onPress={() => {
                             navigation.navigate("options")
                             message = 'null'
@@ -241,7 +241,7 @@ const Game = ({ navigation }) => {
                         <Image source={require('../assets/optionsButton.png')}/>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={{width: 161, height: 51, marginLeft: 75, marginTop: 5}}
+                    <TouchableOpacity style={{width: 161, height: 51, marginLeft: '15%', marginTop: '0.75%'}}
                         onPress={() => {
                             navigation.navigate("home")
                             message = 'null'
@@ -252,7 +252,7 @@ const Game = ({ navigation }) => {
                         <Image source={require('../assets/quitButton.png')}/>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={{width: 173, height: 55, marginLeft: 70, marginTop: 5}}
+                    <TouchableOpacity style={{width: 173, height: 55, marginLeft: '13.7%', marginTop: '0.75%'}}
                         onPress={() => {
                             themeSong.playAsync();
                             setRunning(true)
@@ -267,7 +267,7 @@ const Game = ({ navigation }) => {
             : null }
 
             {running && !playing ? 
-                playThemeSong()
+               playThemeSong()
             : null }          
 
         </View>

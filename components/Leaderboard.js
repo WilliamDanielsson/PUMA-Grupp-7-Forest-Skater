@@ -76,8 +76,8 @@ export default Leaderboard
 const styles = StyleSheet.create({
     returnButton: {
         position: 'absolute',
-        top: 38,
-        left: 143,
+        top: '11%',
+        left: '17.4%',
         zIndex: 10
     },
     container: {
